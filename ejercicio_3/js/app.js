@@ -1,5 +1,4 @@
 //Ejercicio 1
-/*
 let nombre=prompt('Introduce tu nombre:');
 let apellido=prompt('Introduce tu apellido:');
 let saludo=`Hola ${nombre} ${apellido}, bienvenid@ a ada`;
@@ -160,17 +159,84 @@ if (numero1 % numero2 === 0) {
 } else {
   console.log(`${numero1} no es múltiplo de ${numero2}`);
 }
-*/
+
 // Ejercicio 21
 let segundos = Number(prompt("Introduce un número de segundos:"));
-let minutos = segundos / 60;
-let horas = minutos / 60;
-if (segundos < 60) {
-  console.log(`${segundos} segundos`);
-} else if (minutos < 60) {
-  segundos = (minutos - minutos.toFixed(0)) * 60; // Resto de segundos
-  minutos = minutos.toFixed(0); // Minutos completos
-  console.log(`${minutos} minutos y ${segundos} segundos`);
-} else {
-  console.log(`${horas} horas`);
+
+let horas = Math.trunc(segundos / 3600);            // horas completas
+let minutos = Math.trunc((segundos % 3600) / 60);   // minutos restantes
+let segRestantes = segundos % 60;                  // segundos restantes
+
+// Función para poner singular o plural
+function pluralizar(valor, singular, plural) {
+  if (valor === 0) return "";
+  if (valor === 1) return `${valor} ${singular}`;
+  return `${valor} ${plural}`;
 }
+
+// Construimos la salida
+let partes = [];
+if (horas > 0) partes.push(pluralizar(horas, "hora", "horas"));
+if (minutos > 0) partes.push(pluralizar(minutos, "minuto", "minutos"));
+if (segRestantes > 0) partes.push(pluralizar(segRestantes, "segundo", "segundos"));
+
+// Si todo es 0 (ej. entrada = 0)
+if (partes.length === 0) partes.push("0 segundos");
+
+// Mostrar resultado
+console.log(partes.join(", "));
+//Ejercicio 22
+let texto=prompt('Ingrese un texto a continuación:');
+let numeroCaracteres=texto.length;
+console.log(numeroCaracteres);
+
+//Ejercicio 23
+let anosTrabajo=Number(prompt('Indica el numero de año que llevas trabajando en la empresa'));
+let diasvacaciones=15
+if (anosTrabajo>3){
+  diasvacaciones+=(anosTrabajo-3)*2;
+  console.log(diasvacaciones);
+} else {
+  console.log(diasvacaciones);
+}
+
+//Ejercicio 24
+let habitacionesDobles=Number(prompt('Indica el número de habitaciónes dobles'));
+let habitacionesTriples=Number(prompt('Indica el número de habitaciónes triples'));
+let habitacionesCuadruples=Number(prompt('Indica el número de habitaciónes cuadruples'));
+let habitacionesTotales=habitacionesCuadruples*4+habitacionesTriples*3+habitacionesDobles*2;
+console.log(habitacionesTotales);
+
+//Ejercicio 25
+let dineroDisponible=Number(prompt('Cuanto dinero disponible tienes:'))
+let servicio='';
+let precio=0;
+let servicios=[];
+let precios=[];
+for (let i=3;i>0;i--){
+  console.log(`Te quedan ${i} servicios por pagar`);
+  servicio=prompt('Ingresa el nombre del servicio');
+  precio=Number(prompt(`Ingresa el precio de ${servicio}`));
+  servicios.push(servicio)
+  precios.push(precio)
+  dineroDisponible-=precio
+  console.log(`Dinero disponible restante: ${dineroDisponible}€`);
+}
+for (i=0;i<3;i++){
+  console.log(`${i+1}.${servicios[i]}:${precios[i]}€`)
+}
+console.log(`El dinero restante son ${dineroDisponible}`);
+
+//Ejercicio 26
+let cantidadProducto=0;
+let valorTotal=0;
+let valorProductos=[10,20,30];
+for (i=0;i<3;i++){
+  cantidadProducto=Number(prompt(`Introduce la cantidad del producto ${i+1}`));
+  console.log(`El valor del producto ${i+1} es ${valorProductos[i]}€`);
+  valorTotal+=valorProductos[i]*cantidadProducto;
+}
+console.log(`El valor total de la compra es ${valorTotal} €`)
+let cuotas=Number(prompt('En cuantas cuotas deseas pagarlo'))
+console.log(`EL numero de cuotas a pagar es ${cuotas} cuotas
+  con un valor por cuota de ${valorTotal/cuotas}€`);
