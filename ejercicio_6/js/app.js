@@ -1,5 +1,5 @@
 //Ejercicio 1
-/*
+
 for (let i=1;i<21;i++){
   if (i%2===1){
     console.log(i);
@@ -60,7 +60,7 @@ for (let i=0;i<cantidadVueltas;i++){
 }
 let promedio=suma/cantidadVueltas;
 console.log(promedio);
-*/
+
 let numeroJuegos=Number(prompt('Indica las veces que vas a jugar'));
 let puntajeJugador=0;
 let puntajeOrdenador=0;
@@ -101,3 +101,73 @@ for (let i=0;i<numeroJuegos;i++){
   }
 console.log(`puntaje: ${puntajeJugador}-jugador || ${puntajeOrdenador}-ordenador`);
 }
+// Ejercicio 7
+let simbolo='*'
+for (let i=1;i<14;i++){
+  resultado=simbolo.repeat(i);
+  console.log(`${resultado}`);
+}
+
+//Ejercicio 8
+let userRegister='fran';
+let passwordRegister='navagua';
+let intentos=0;
+while (intentos<3){
+  let user=prompt('Introduce el usuario');
+  let password=prompt('Introduce la contraseña');
+  if (user===userRegister && password===passwordRegister){
+    console.log('Bienvenido')
+    break;
+  }else if(intentos==2){
+    console.log('Saliendo del programa')
+  }else {
+    console.log('Autentificación erronea, repite')
+  }
+  intentos+=1
+}
+
+//Ejercicio 9
+function azar(){
+  let opciones=['cara','cruz'];
+  let opcionOrdenador=Math.floor(Math.random()*2);
+  return opciones[opcionOrdenador];
+}
+let eleccionOrdenador='';
+let opcionUsuario='';
+let contadorAcertadas=0;
+let contadorMaximas=0;
+while (opcionUsuario!=='salir'){
+  opcionUsuario=prompt('Introduce: cara || cruz || salir');
+  eleccionOrdenador=azar();
+  if (opcionUsuario===eleccionOrdenador){
+    console.log('acertaste');
+    contadorAcertadas+=1
+    if (contadorAcertadas>contadorMaximas){
+      contadorMaximas=contadorAcertadas;
+    }
+  }else if (opcionUsuario==='salir'){
+    console.log('Saliendo del programa');
+  }else {
+    console.log('fallaste')
+    contadorAcertadas=0;
+  }
+
+}
+console.log(`la cantidad máxima de aciertos seguidos es de ${contadorMaximas}`);
+
+function azar(){
+  let opcionOrdenador=Math.floor(Math.random()*2);
+  return opcionOrdenador;
+}
+let numeroUsuario=0
+let numeroOrdenador=9
+while (numeroUsuario!==numeroOrdenador){
+  numeroUsuario=Number(prompt('Introduce un numero del 1 al 10:'));
+  numeroOrdenador=azar();
+  if (numeroUsuario<numeroOrdenador){
+    console.log('El numero a adivinar es mayor que el introducido')
+  }else{
+    console.log('El numero a adivinar es menor que el introducido')
+  }
+}
+console.log('Lo has adivinado')
