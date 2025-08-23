@@ -1,0 +1,76 @@
+
+Ejercicios de Arrays en JavaScript
+==================================
+
+1. Agregar con push
+Crea un array vacío llamado `frutas` y agrega "manzana", "pera" y "uva" usando push.
+
+2. Agregar con unshift
+Al array `frutas`, agrega "sandía" al inicio.
+
+3. Eliminar con pop
+Elimina el último elemento del array `frutas` y muéstralo por consola.
+
+4. Eliminar con shift
+Elimina el primer elemento del array `frutas` y muéstralo.
+
+5. Eliminar con splice
+En un array `colores = ["rojo", "verde", "azul", "amarillo"]`, elimina "azul" usando splice.
+
+6. Agregar con splice
+En el array `colores`, agrega "morado" entre "rojo" y "verde".
+
+7. Vaciar con slice
+Crea un array `numeros = [1,2,3,4,5]`. Usa slice para copiarlo en otro array y luego vacía `numeros` asignándole [].
+
+8. Combinar arrays con concat
+Combina los arrays `animales1 = ["perro","gato"]` y `animales2 = ["loro","conejo"]` en uno solo.
+
+9. Dividir con slice
+Del array `letras = ["a","b","c","d","e"]`, crea un nuevo array con las tres primeras letras.
+
+10. Unir con join
+Crea un array `palabras = ["Hola", "mundo"]` y conviértelo en un string "Hola mundo".
+
+11. Ordenar números con sort
+Ordena el array `numeros = [4, 2, 8, 1, 5]` de menor a mayor.
+
+12. Ordenar strings con sort
+Ordena alfabéticamente el array `nombres = ["Carlos","Ana","Pedro","Luis"]`.
+
+13. Ordenar objetos con Arrow Function
+Dado el array  
+personas = [
+ {nombre:"Ana", edad:25},
+ {nombre:"Luis", edad:20},
+ {nombre:"Pedro", edad:30}
+]
+Ordénalo de menor a mayor edad.
+
+14. Búsqueda con indexOf
+Dado el array `materias = ["mates","lengua","historia","ingles"]`, encuentra el índice de "historia".
+
+15. Búsqueda con find
+En el array `numeros = [3, 7, 11, 15, 20]`, encuentra el primer número mayor a 10.
+
+16. Uso de find en objetos
+Dado el array  
+productos = [
+ {id:1, nombre:"lápiz"},
+ {id:2, nombre:"cuaderno"},
+ {id:3, nombre:"borrador"}
+]
+Encuentra el objeto cuyo nombre sea "cuaderno".
+
+17. Uso de filter extra (opcional)
+Del array `numeros = [1,2,3,4,5,6]`, obtén un nuevo array solo con los pares.
+
+18. Uso de Spread para clonar
+Crea un array `original = [1,2,3]` y clónalo en `copia` usando spread.
+
+19. Uso de Spread para combinar
+Combina los arrays `a = [1,2]` y `b = [3,4]` en uno nuevo usando spread.
+
+20. Spread para agregar en medio
+Crea un array `base = [1,4]` y usa spread para crear [1,2,3,4].
+
