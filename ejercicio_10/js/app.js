@@ -60,10 +60,52 @@
 //   console.log("Frodo y sam estan separados, Peligro");
 // }
 //Ejercicio 7
-const frutasIngresadas = prompt("Ingrese las frutas");
-const frutasSeparadas = frutasIngresadas.split(/[ ]+/);
-let arrayFrutas = frutasSeparadas.reduce((acumulador, fruta) => {
-  acumulador[fruta] = acumulador[fruta] ? acumulador[fruta] + 1 : 1;
-  return acumulador;
-}, {});
-console.log(arrayFrutas);
+//const frutasIngresadas = prompt("Ingrese las frutas");
+//const frutasSeparadas = frutasIngresadas.split(/[ ]+/);
+//let arrayFrutas = frutasSeparadas.reduce((acumulador, fruta) => {
+//  acumulador[fruta] = acumulador[fruta] ? acumulador[fruta] + 1 : 1;
+//  return acumulador;
+//}, {});
+//console.log(arrayFrutas);
+// Ejercicio 8
+// const listaMonosBananas=prompt('Introduce monos y bananas');
+// const listaArray=listaMonosBananas.split(/[ ,]+/);
+// const bananasPorMono=Number(prompt('Cuantas Bananas come cada mono'));
+// let arrayMonos=listaArray.reduce((acumulador,monoBanana)=>{
+// acumulador[monoBanana]=acumulador[monoBanana] ? acumulador[monoBanana]+1:1;
+// return acumulador;
+// },{});
+// if ((arrayMonos['banana']/arrayMonos['mono'])<bananasPorMono){
+//   console.log('Oh no, no hay suficientes bananas para los monos');
+// } else {
+//   console.log('Hay suficientes bananas para los monos');
+// }
+// Ejercicio 9
+// const listaPerrosGatos=prompt('Introduce perros y gatos');
+// const listaArray=listaPerrosGatos.split(/[ ,]+/);
+// const arrayOrdenado=listaArray.sort();
+// console.log(arrayOrdenado);
+// Ejercicio10
+// const listaUsuarios=prompt('Introduce los usuarios');
+// const arrayUsuarios=listaUsuarios.split(/[ ,]+/);
+// if (arrayUsuarios.length===1){
+//   console.log(`${arrayUsuarios[0]} está conectada`);
+// } else if(arrayUsuarios.length===2){
+//   console.log(`${arrayUsuarios[0]} y ${arrayUsuarios[1]} están conectadas`);
+// } else if(arrayUsuarios.length>2){
+//   console.log(`${arrayUsuarios[0]}, ${arrayUsuarios[1]} y ${arrayUsuarios.length-2} persona(s) más están conectadas`);
+// }
+// Ejercicio 11
+const listaPlantas=prompt('Introduce los Flores y plantines');
+let arrayPlantas=listaPlantas.split(/[ ,]+/);
+for (let i=0;i<arrayPlantas.length;i++){
+  if (arrayPlantas[0]==='plantin'){
+    console.log('Error');
+    break;
+  }
+  if (arrayPlantas[i]==='plantin'){
+    arrayPlantas[i]=arrayPlantas[i-1];
+    
+  }
+}
+console.log(arrayPlantas);
