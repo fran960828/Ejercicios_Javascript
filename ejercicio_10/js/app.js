@@ -96,16 +96,51 @@
 //   console.log(`${arrayUsuarios[0]}, ${arrayUsuarios[1]} y ${arrayUsuarios.length-2} persona(s) más están conectadas`);
 // }
 // Ejercicio 11
-const listaPlantas=prompt('Introduce los Flores y plantines');
-let arrayPlantas=listaPlantas.split(/[ ,]+/);
-for (let i=0;i<arrayPlantas.length;i++){
-  if (arrayPlantas[0]==='plantin'){
-    console.log('Error');
-    break;
-  }
-  if (arrayPlantas[i]==='plantin'){
-    arrayPlantas[i]=arrayPlantas[i-1];
-    
-  }
-}
-console.log(arrayPlantas);
+// const listaPlantas=prompt('Introduce los Flores y plantines');
+// let arrayPlantas=listaPlantas.split(/[ ,]+/);
+// for (let i=0;i<arrayPlantas.length;i++){
+//   if (arrayPlantas[0]==='plantin'){
+//     console.log('Error');
+//     break;
+//   }
+//   if (arrayPlantas[i]==='plantin'){
+//     arrayPlantas[i]=arrayPlantas[i-1];
+
+//   }
+// }
+// console.log(arrayPlantas);
+// Ejercicio 12
+// const listaPlantas = prompt("Introduce las planta,oruga y calavera");
+// const arrayPlantas = listaPlantas.split(/[ ,]+/);
+
+// let dentroDeBloque = false;
+
+// const arrayFinal = arrayPlantas.filter((planta) => {
+//   if (planta === "oruga") {
+//     dentroDeBloque = true; // empezamos a saltar
+//     return false; // no se incluye "oruga"
+//   }
+//   if (planta === "calavera") {
+//     dentroDeBloque = false; // terminamos de saltar
+//     return false; // no se incluye "calavera"
+//   }
+//   return !dentroDeBloque; // solo se incluyen si estamos fuera del bloque
+// });
+
+// console.log(arrayFinal);
+// Ejercicio 13
+// const listaSimbolos = prompt("Introduce 5 símbolos");
+// const arraySimbolos = listaSimbolos.split(/[ ,]+/).slice(0, 5);
+// let comprobacionSimbolos = arraySimbolos.every(
+//   (simbolo) => simbolo === arraySimbolos[0]
+// );
+// if (comprobacionSimbolos === true) {
+//   console.log("Enhorabuena, has ganado");
+// } else {
+//   console.log("Has fallado");
+// }
+// Ejercicio 14
+const listaNumeros = prompt("Introduce numeros");
+let array = listaNumeros.split(/[ ,]+/);
+let arrayInverso = array.reverse();
+console.log(arrayInverso);
