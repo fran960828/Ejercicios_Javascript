@@ -140,7 +140,122 @@
 //   console.log("Has fallado");
 // }
 // Ejercicio 14
-const listaNumeros = prompt("Introduce numeros");
-let array = listaNumeros.split(/[ ,]+/);
-let arrayInverso = array.reverse();
-console.log(arrayInverso);
+// const listaNumeros = prompt("Introduce numeros");
+// let array = listaNumeros.split(/[ ,]+/);
+// let arrayInverso = array.reverse();
+// console.log(arrayInverso);
+// Ejercicio 15
+// const listaNumeros = prompt("Introduce numeros");
+// let array = listaNumeros.split(/[ ,]+/);
+// let arrayDoble = array.map((numero) => numero * 2);
+// console.log(arrayDoble);
+// Ejercicio 16
+// const listaAnimales = prompt("Introduce los animales");
+// const arrayAnimales = listaAnimales.split(/[ ,]+/);
+// arrayFiltrado = arrayAnimales.filter((animal) => {
+//   if (animal === "mosquito") {
+//     return false;
+//   }
+//   if (animal === "alacran") {
+//     return false;
+//   }
+//   return animal;
+// });
+// console.log(arrayFiltrado);
+// Ejercicio 17
+// const primerString = prompt("Introduce los numeros del primer array");
+// const primerArray = primerString.split(/[ ,]+/);
+// const segundoString = prompt("Introduce los numeros del segundo array");
+// const segundoArray = segundoString.split(/[ ,]+/);
+// if (primerArray.length === segundoArray.length) {
+//   let comprobacion = primerArray.every((numero, i, arr) => {
+//     return numero === segundoArray[i];
+//   });
+//   if (comprobacion === true) {
+//     console.log("Los array son iguales");
+//   } else {
+//     console.log("Los arrays son distintos el uno del otro");
+//   }
+// } else {
+//   console.log("Los arrays son distintos el uno del otro");
+// }
+// Ejercicio 18
+// Jugador 1
+// const jugador1 = prompt("Introduce el nombre del primer jugador");
+// const puntajesJugador1 = prompt("Introduce los puntajes del primer jugador");
+// const arrayPuntajes1 = puntajesJugador1.split(/[ ,]+/).map(Number);
+// Jugador 2
+// const jugador2 = prompt("Introduce el nombre del segundo jugador");
+// const puntajesJugador2 = prompt("Introduce los puntajes del segundo jugador");
+// const arrayPuntajes2 = puntajesJugador2.split(/[ ,]+/).map(Number);
+// let resultado = arrayPuntajes1.reduce(
+//   (acumulador, puntaje, i) => {
+//     if (puntaje > arrayPuntajes2[i]) {
+//       acumulador.jugador1++;
+//     } else if (puntaje < arrayPuntajes2[i]) {
+//       acumulador.jugador2++;
+//     }
+//     return acumulador;
+//   },
+//   { jugador1: 0, jugador2: 0 }
+// );
+// if (resultado.jugador1 > resultado.jugador2) {
+//   console.log(`Gana ${jugador1}`);
+// } else {
+//   console.log(`Gana ${jugador2}`);
+// }
+// Ejercicio 19
+// const primerString = prompt("Introduce los numeros del primer array");
+// const primerArray = primerString.split(/[ ,]+/);
+// arrayRecortado = primerArray.map((palabra) => palabra.slice(0, 5));
+// console.log(arrayRecortado);
+// Ejercicio 20
+// let array2D = [
+//   [2, 7, 12, 1],
+//   [8, 23],
+//   [9, 45, 7],
+//   [22, 3, 24, 4],
+// ];
+// let arraySuma = array2D.map((elemento) => {
+//   return elemento.reduce((acumulador, arr) => {
+//     acumulador += arr;
+//     return acumulador;
+//   });
+// });
+// console.log(arraySuma);
+// let maximo = arraySuma.reduce((acumulador, numero) => {
+//   if (numero > acumulador) {
+//     return numero;
+//   }
+//   return acumulador;
+// });
+// console.log(maximo);
+// Ejercicio 21
+// let array2D = [
+//   [2, 7, 12, 1],
+//   [8, 23],
+//   [9, 45, 7],
+//   [22, 3, 24, 4],
+// ];
+// let columna = Number(prompt("Introduce la columna que quieres sumar"));
+// let suma = array2D.reduce((acumulador, elemento) => {
+//   if (columna <= elemento.length) {
+//     acumulador += elemento[columna - 1];
+//     return acumulador;
+//   }
+//   return acumulador;
+// }, 0);
+// console.log(suma);
+// Ejercicio 22
+let frutas = [
+  ["tomate", "manzana", "platano", "platano"],
+  ["platano", "tomate"],
+  ["tomate", "manzana", "platano"],
+  ["manzana", "platano", "tomate", "platano"],
+];
+let item = prompt("Introduce una fruta");
+let conteo = frutas.reduce((acumulador, elemento) => {
+  acumulador += elemento.filter((fruta) => fruta === item).length;
+  return acumulador;
+}, 0);
+console.log(conteo);

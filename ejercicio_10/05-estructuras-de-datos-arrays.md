@@ -144,10 +144,10 @@ Ejemplo:
 
 **Tragamonedas**
 
-- Crear un programa que permita ingresar un conjunto de 5 símbolos y 
-determine si son iguales. Si lo son, mostrar un mensaje indicando que 
-se ha ganado. Si se ingresan más de 5 sólo deben evaluarse los primeros 5.
- Ejemplo:
+- Crear un programa que permita ingresar un conjunto de 5 símbolos y
+  determine si son iguales. Si lo son, mostrar un mensaje indicando que
+  se ha ganado. Si se ingresan más de 5 sólo deben evaluarse los primeros 5.
+  Ejemplo:
 
 ```javascript
 // Ingrese símbolos: ⭐️⭐️⭐️💫✨
@@ -169,7 +169,11 @@ se ha ganado. Si se ingresan más de 5 sólo deben evaluarse los primeros 5.
 
 **Multiplicar números individuales**
 
-- Crear un programa que pida ingresar números separados por espacios y luego pregunte por cuánto se desea multiplicar cada número. El programa debe devolver un mensaje con un array donde cada elemento es el resultado del elemento del primer array (en la misma posición) multiplicado por el número ingresado. Ejemplo:
+- Crear un programa que pida ingresar números separados por espacios y
+  luego pregunte por cuánto se desea multiplicar cada número.
+  El programa debe devolver un mensaje con un array donde cada elemento es
+  el resultado del elemento del primer array (en la misma posición) multiplicado
+  por el número ingresado. Ejemplo:
 
 ```javascript
 // Ingrese números: 5 7 15 22 40
@@ -180,7 +184,9 @@ se ha ganado. Si se ingresan más de 5 sólo deben evaluarse los primeros 5.
 
 **Exterminador**
 
-- Crear un programa que permita ingresar una lista de animales separados por espacios y devuelva un mensaje con todos los animales menos los mosquitos y alacranes. Ejemplo:
+- Crear un programa que permita ingresar una lista de animales separados 
+por espacios y devuelva un mensaje con todos los animales menos los mosquitos 
+y alacranes. Ejemplo:
 
 ```javascript
 // Ingrese animales: 🐱 🐭 🐶 🦟 🦊 🦂
@@ -190,7 +196,9 @@ se ha ganado. Si se ingresan más de 5 sólo deben evaluarse los primeros 5.
 
 **Arrays iguales**
 
-- Crear un programa que permita ingresar dos listas de valores separados por espacio y muestre en un mensaje si las listas son iguales o no (mismos valores en mismo orden). Ejemplo:
+- Crear un programa que permita ingresar dos listas de valores separados por 
+espacio y muestre en un mensaje si las listas son iguales o no
+ (mismos valores en mismo orden). Ejemplo:
 
 ```javascript
 // Ingrese valores de lista 1: 10 25 6 33 48 105
@@ -201,7 +209,14 @@ se ha ganado. Si se ingresan más de 5 sólo deben evaluarse los primeros 5.
 
 **Puntajes**
 
-- Crear un programa que permita ingresar el nombre de dos jugadoras y dos listas con los puntajes de cada ronda de un juego separados por espacio. Primero debe preguntarse el nombre de la jugadora 1, luego sus puntajes, luego el nombre de la jugadora 2, luego sus puntajes. El programa debe comparar los valores de las listas uno a uno (el primero con el primero, el segundo con el segundo) sumando un punto a la jugadora que tenga mayor puntaje en la ronda. Al finalizar, mostrar quién gano y los puntajes finales. Ejemplo:
+- Crear un programa que permita ingresar el nombre de dos jugadoras y 
+dos listas con los puntajes de cada ronda de un juego separados por espacio.
+ Primero debe preguntarse el nombre de la jugadora 1, luego sus puntajes, 
+ luego el nombre de la jugadora 2, luego sus puntajes. 
+ El programa debe comparar los valores de las listas uno a uno 
+ (el primero con el primero, el segundo con el segundo) 
+ sumando un punto a la jugadora que tenga mayor puntaje en la ronda. 
+ Al finalizar, mostrar quién gano y los puntajes finales. Ejemplo:
 
 ```javascript
 // Ingrese nombre jugadora 1: Ada
@@ -216,7 +231,14 @@ se ha ganado. Si se ingresan más de 5 sólo deben evaluarse los primeros 5.
 
 **Piedra, papel, tijera III**
 
-- Crear un programa que permita ingresar el nombre de dos jugadoras y dos listas con los valores de la jugada en una ronda de "piedra, papel o tijera". Primero debe preguntarse el nombre de la jugadora 1, luego sus jugadas, luego el nombre de la jugadora 2, luego sus jugadas. El programa debe comparar los valores de las listas uno a uno (el primero con el primero, el segundo con el segundo) sumando un punto a la jugadora que gane la ronda. Al finalizar, mostrar quién gano y los puntajes finales. Ejemplo:
+- Crear un programa que permita ingresar el nombre de dos jugadoras y 
+dos listas con los valores de la jugada en una ronda 
+de "piedra, papel o tijera". Primero debe preguntarse el nombre 
+de la jugadora 1, luego sus jugadas, luego el nombre de la jugadora 2, 
+luego sus jugadas. El programa debe comparar los valores de las listas uno 
+a uno (el primero con el primero, el segundo con el segundo) sumando un punto 
+a la jugadora que gane la ronda. Al finalizar, mostrar quién gano y los puntajes
+ finales. Ejemplo:
 
 ```javascript
 // Ingrese nombre jugadora 1: Ada
@@ -231,7 +253,10 @@ se ha ganado. Si se ingresan más de 5 sólo deben evaluarse los primeros 5.
 
 **Recortar palabras**
 
-- Crear un programa que permita ingresar una lista de palabras separadas por espacios y que pregunta a cuántos caracteres se desea recortar las palabras. El programa debe devolver una lista con las palabras recortadas en esa cantidad de caracteres. Ejemplo:
+- Crear un programa que permita ingresar una lista de palabras separadas 
+por espacios y que pregunta a cuántos caracteres se desea recortar las palabras.
+ El programa debe devolver una lista con las palabras recortadas en esa cantidad
+  de caracteres. Ejemplo:
 
 ```javascript
 // Ingrese palabras: elefante sociedad chocolate avion america
@@ -244,7 +269,9 @@ se ha ganado. Si se ingresan más de 5 sólo deben evaluarse los primeros 5.
 
 **Mayor número**
 
-- Crear un programa que dado un array 2d de números, indique cuál es el mayor de ellos. El array debe estar guardado en una variable (no hace falta ingresarlo). Array de ejemplo:
+- Crear un programa que dado un array 2d de números, 
+indique cuál es el mayor de ellos. El array debe estar guardado en una variable 
+(no hace falta ingresarlo). Array de ejemplo:
 
 ```javascript
 [
@@ -257,7 +284,10 @@ se ha ganado. Si se ingresan más de 5 sólo deben evaluarse los primeros 5.
 
 **Columnas**
 
-- Crear un programa que dado un array 2d de números, indique cuál es la suma de una de sus columnas. El programa debe dar la posibilidad de ingresar qué columna se desea elegir. El array debe estar guardado en una variable (no hace falta ingresarlo). Ejemplo:
+- Crear un programa que dado un array 2d de números, 
+indique cuál es la suma de una de sus columnas. El programa debe dar 
+la posibilidad de ingresar qué columna se desea elegir. El array debe estar 
+guardado en una variable (no hace falta ingresarlo). Ejemplo:
 
 ```javascript
 [
@@ -272,7 +302,9 @@ se ha ganado. Si se ingresan más de 5 sólo deben evaluarse los primeros 5.
 
 **Cantidad**
 
-- Crear un programa que dado un array 2d de _strings_, indique cuál es la cantidad de una de sus ítems. El programa debe dar la posibilidad de ingresar qué item se desea buscar. Ejemplo:
+- Crear un programa que dado un array 2d de _strings_, 
+indique cuál es la cantidad de una de sus ítems. El programa debe dar 
+la posibilidad de ingresar qué item se desea buscar. Ejemplo:
 
 ```javascript
 [
@@ -287,7 +319,9 @@ se ha ganado. Si se ingresan más de 5 sólo deben evaluarse los primeros 5.
 
 **Sudoku**
 
-- Crear un programa que permita ingresar 9 números separados por espacios, y los distribuya en una grilla de 3x3. El programa debe decir si hay algún número que se repite en una fila, columna, o diagonal. Ejemplo
+- Crear un programa que permita ingresar 9 números separados por espacios, 
+y los distribuya en una grilla de 3x3. El programa debe decir si hay algún número
+ que se repite en una fila, columna, o diagonal. Ejemplo
 
 ```javascript
 [
@@ -299,7 +333,13 @@ se ha ganado. Si se ingresan más de 5 sólo deben evaluarse los primeros 5.
 
 **Buscaminas**
 
-- Crear un programa que dado un array 2d permita ingresar una coordenada (representando los índices del array), y mostrar si era una casilla vacía o tenía una mina. En caso de que tenga una casilla vacía, debe poder seguir jugando e ingresando casillas. Si descubre todas las casillas vacías o elige una con una mina, el juego debe terminar, e indicar si perdió o ganó. Las minas y casillas vacías (ocultas y descubiertas) pueden representarse con emojis con con números o letras.
+- Crear un programa que dado un array 2d permita ingresar una coordenada 
+(representando los índices del array), y mostrar si era una casilla vacía o 
+tenía una mina. En caso de que tenga una casilla vacía, debe poder seguir 
+jugando e ingresando casillas. Si descubre todas las casillas vacías o 
+elige una con una mina, el juego debe terminar, e indicar si perdió o ganó. 
+Las minas y casillas vacías (ocultas y descubiertas) pueden representarse con 
+emojis con con números o letras.
 
 ```javascript
 const tablero =
