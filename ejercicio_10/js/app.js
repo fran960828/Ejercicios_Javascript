@@ -247,15 +247,31 @@
 // }, 0);
 // console.log(suma);
 // Ejercicio 22
-let frutas = [
-  ["tomate", "manzana", "platano", "platano"],
-  ["platano", "tomate"],
-  ["tomate", "manzana", "platano"],
-  ["manzana", "platano", "tomate", "platano"],
-];
-let item = prompt("Introduce una fruta");
-let conteo = frutas.reduce((acumulador, elemento) => {
-  acumulador += elemento.filter((fruta) => fruta === item).length;
-  return acumulador;
-}, 0);
-console.log(conteo);
+// let frutas = [
+//   ["tomate", "manzana", "platano", "platano"],
+//   ["platano", "tomate"],
+//   ["tomate", "manzana", "platano"],
+//   ["manzana", "platano", "tomate", "platano"],
+// ];
+// let item = prompt("Introduce una fruta");
+// let conteo = frutas.reduce((acumulador, elemento) => {
+//   acumulador += elemento.filter((fruta) => fruta === item).length;
+//   return acumulador;
+// }, 0);
+// console.log(conteo);
+// Ejercicio 23
+let numeros=prompt('Introduce 9 numeros separados por espacios');
+let arrayNumeros=numeros.split(' ').map(Number);
+let grilla = []
+let n=Math.sqrt(arrayNumeros.length);//Esto es la raiz cuadrada de la longitud del array
+if (!Number.isInteger(n)){
+  console.log('la grilla no es cuadrada')
+}
+
+
+
+
+
+for (let i=0;i<3;i++){
+  grilla.push(arrayNumeros.slice(i*3,i*3+3));
+}
