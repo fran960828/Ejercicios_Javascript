@@ -184,9 +184,9 @@ Ejemplo:
 
 **Exterminador**
 
-- Crear un programa que permita ingresar una lista de animales separados 
-por espacios y devuelva un mensaje con todos los animales menos los mosquitos 
-y alacranes. Ejemplo:
+- Crear un programa que permita ingresar una lista de animales separados
+  por espacios y devuelva un mensaje con todos los animales menos los mosquitos
+  y alacranes. Ejemplo:
 
 ```javascript
 // Ingrese animales: 🐱 🐭 🐶 🦟 🦊 🦂
@@ -196,9 +196,9 @@ y alacranes. Ejemplo:
 
 **Arrays iguales**
 
-- Crear un programa que permita ingresar dos listas de valores separados por 
-espacio y muestre en un mensaje si las listas son iguales o no
- (mismos valores en mismo orden). Ejemplo:
+- Crear un programa que permita ingresar dos listas de valores separados por
+  espacio y muestre en un mensaje si las listas son iguales o no
+  (mismos valores en mismo orden). Ejemplo:
 
 ```javascript
 // Ingrese valores de lista 1: 10 25 6 33 48 105
@@ -209,14 +209,14 @@ espacio y muestre en un mensaje si las listas son iguales o no
 
 **Puntajes**
 
-- Crear un programa que permita ingresar el nombre de dos jugadoras y 
-dos listas con los puntajes de cada ronda de un juego separados por espacio.
- Primero debe preguntarse el nombre de la jugadora 1, luego sus puntajes, 
- luego el nombre de la jugadora 2, luego sus puntajes. 
- El programa debe comparar los valores de las listas uno a uno 
- (el primero con el primero, el segundo con el segundo) 
- sumando un punto a la jugadora que tenga mayor puntaje en la ronda. 
- Al finalizar, mostrar quién gano y los puntajes finales. Ejemplo:
+- Crear un programa que permita ingresar el nombre de dos jugadoras y
+  dos listas con los puntajes de cada ronda de un juego separados por espacio.
+  Primero debe preguntarse el nombre de la jugadora 1, luego sus puntajes,
+  luego el nombre de la jugadora 2, luego sus puntajes.
+  El programa debe comparar los valores de las listas uno a uno
+  (el primero con el primero, el segundo con el segundo)
+  sumando un punto a la jugadora que tenga mayor puntaje en la ronda.
+  Al finalizar, mostrar quién gano y los puntajes finales. Ejemplo:
 
 ```javascript
 // Ingrese nombre jugadora 1: Ada
@@ -231,14 +231,14 @@ dos listas con los puntajes de cada ronda de un juego separados por espacio.
 
 **Piedra, papel, tijera III**
 
-- Crear un programa que permita ingresar el nombre de dos jugadoras y 
-dos listas con los valores de la jugada en una ronda 
-de "piedra, papel o tijera". Primero debe preguntarse el nombre 
-de la jugadora 1, luego sus jugadas, luego el nombre de la jugadora 2, 
-luego sus jugadas. El programa debe comparar los valores de las listas uno 
-a uno (el primero con el primero, el segundo con el segundo) sumando un punto 
-a la jugadora que gane la ronda. Al finalizar, mostrar quién gano y los puntajes
- finales. Ejemplo:
+- Crear un programa que permita ingresar el nombre de dos jugadoras y
+  dos listas con los valores de la jugada en una ronda
+  de "piedra, papel o tijera". Primero debe preguntarse el nombre
+  de la jugadora 1, luego sus jugadas, luego el nombre de la jugadora 2,
+  luego sus jugadas. El programa debe comparar los valores de las listas uno
+  a uno (el primero con el primero, el segundo con el segundo) sumando un punto
+  a la jugadora que gane la ronda. Al finalizar, mostrar quién gano y los puntajes
+  finales. Ejemplo:
 
 ```javascript
 // Ingrese nombre jugadora 1: Ada
@@ -253,9 +253,9 @@ a la jugadora que gane la ronda. Al finalizar, mostrar quién gano y los puntaje
 
 **Recortar palabras**
 
-- Crear un programa que permita ingresar una lista de palabras separadas 
-por espacios y que pregunta a cuántos caracteres se desea recortar las palabras.
- El programa debe devolver una lista con las palabras recortadas en esa cantidad
+- Crear un programa que permita ingresar una lista de palabras separadas
+  por espacios y que pregunta a cuántos caracteres se desea recortar las palabras.
+  El programa debe devolver una lista con las palabras recortadas en esa cantidad
   de caracteres. Ejemplo:
 
 ```javascript
@@ -269,9 +269,9 @@ por espacios y que pregunta a cuántos caracteres se desea recortar las palabras
 
 **Mayor número**
 
-- Crear un programa que dado un array 2d de números, 
-indique cuál es el mayor de ellos. El array debe estar guardado en una variable 
-(no hace falta ingresarlo). Array de ejemplo:
+- Crear un programa que dado un array 2d de números,
+  indique cuál es el mayor de ellos. El array debe estar guardado en una variable
+  (no hace falta ingresarlo). Array de ejemplo:
 
 ```javascript
 [
@@ -284,10 +284,10 @@ indique cuál es el mayor de ellos. El array debe estar guardado en una variable
 
 **Columnas**
 
-- Crear un programa que dado un array 2d de números, 
-indique cuál es la suma de una de sus columnas. El programa debe dar 
-la posibilidad de ingresar qué columna se desea elegir. El array debe estar 
-guardado en una variable (no hace falta ingresarlo). Ejemplo:
+- Crear un programa que dado un array 2d de números,
+  indique cuál es la suma de una de sus columnas. El programa debe dar
+  la posibilidad de ingresar qué columna se desea elegir. El array debe estar
+  guardado en una variable (no hace falta ingresarlo). Ejemplo:
 
 ```javascript
 [
@@ -302,9 +302,9 @@ guardado en una variable (no hace falta ingresarlo). Ejemplo:
 
 **Cantidad**
 
-- Crear un programa que dado un array 2d de _strings_, 
-indique cuál es la cantidad de una de sus ítems. El programa debe dar 
-la posibilidad de ingresar qué item se desea buscar. Ejemplo:
+- Crear un programa que dado un array 2d de _strings_,
+  indique cuál es la cantidad de una de sus ítems. El programa debe dar
+  la posibilidad de ingresar qué item se desea buscar. Ejemplo:
 
 ```javascript
 [
@@ -319,9 +319,9 @@ la posibilidad de ingresar qué item se desea buscar. Ejemplo:
 
 **Sudoku**
 
-- Crear un programa que permita ingresar 9 números separados por espacios, 
-y los distribuya en una grilla de 3x3. El programa debe decir si hay algún número
- que se repite en una fila, columna, o diagonal. Ejemplo
+- Crear un programa que permita ingresar 9 números separados por espacios,
+  y los distribuya en una grilla de 3x3. El programa debe decir si hay algún número
+  que se repite en una fila, columna, o diagonal. Ejemplo
 
 ```javascript
 [
@@ -333,13 +333,13 @@ y los distribuya en una grilla de 3x3. El programa debe decir si hay algún núm
 
 **Buscaminas**
 
-- Crear un programa que dado un array 2d permita ingresar una coordenada 
-(representando los índices del array), y mostrar si era una casilla vacía o 
-tenía una mina. En caso de que tenga una casilla vacía, debe poder seguir 
-jugando e ingresando casillas. Si descubre todas las casillas vacías o 
-elige una con una mina, el juego debe terminar, e indicar si perdió o ganó. 
-Las minas y casillas vacías (ocultas y descubiertas) pueden representarse con 
-emojis con con números o letras.
+- Crear un programa que dado un array 2d permita ingresar una coordenada
+  (representando los índices del array), y mostrar si era una casilla vacía o
+  tenía una mina. En caso de que tenga una casilla vacía, debe poder seguir
+  jugando e ingresando casillas. Si descubre todas las casillas vacías o
+  elige una con una mina, el juego debe terminar, e indicar si perdió o ganó.
+  Las minas y casillas vacías (ocultas y descubiertas) pueden representarse con
+  emojis con con números o letras.
 
 ```javascript
 const tablero =
@@ -370,8 +370,16 @@ const tablero =
 
 **Sublistas**
 
-- Crear un programa que permita agregar listas de tareas y agruparlas en categorias. El programa debe hacer lo siguiente: 1. Permitir ingresar el nombre de una categoría 2. Permitir ingresar una tarea 3. Preguntar si desea ingresar otra tarea 4. Si responde que si, volver al punto 2 5. Si responde que no, preguntar si desea ingresar otra categoría 6. Si responde que sí, volver al punto 1 7. Si responde que no, terminar el programa
-  En todo momento (en cada mensaje), el programa debe mostrar las tareas agrupadas por categorías. Las categorías deben diferenciarse de las tareas (se pueden usar divisores, emojis, espacios, etc). Ejemplo:
+- Crear un programa que permita agregar listas de tareas y agruparlas en categorias.
+  El programa debe hacer lo siguiente: 1. Permitir ingresar el nombre de una
+  categoría 2. Permitir ingresar una tarea 3. Preguntar si desea ingresar
+  otra tarea 4. Si responde que si, volver al punto 2 5. Si responde que no,
+  preguntar si desea ingresar otra categoría 6. Si responde que sí,
+  volver al punto 1 7. Si responde que no, terminar el programa
+  En todo momento (en cada mensaje),
+  el programa debe mostrar las tareas agrupadas por categorías.
+  Las categorías deben diferenciarse de las tareas
+  (se pueden usar divisores, emojis, espacios, etc). Ejemplo:
 
 ```
 Lista de Tareas

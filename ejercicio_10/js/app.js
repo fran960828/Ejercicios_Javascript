@@ -260,18 +260,296 @@
 // }, 0);
 // console.log(conteo);
 // Ejercicio 23
-let numeros=prompt('Introduce 9 numeros separados por espacios');
-let arrayNumeros=numeros.split(' ').map(Number);
-let grilla = []
-let n=Math.sqrt(arrayNumeros.length);//Esto es la raiz cuadrada de la longitud del array
-if (!Number.isInteger(n)){
-  console.log('la grilla no es cuadrada')
+// let numeros = prompt("Introduce 9 numeros separados por espacios");
+// let arrayNumeros = numeros.split(" ").map(Number);
+// let grilla = [];
+// let n = Math.sqrt(arrayNumeros.length); //Esto es la raiz cuadrada de la longitud del array
+// if (!Number.isInteger(n)) {
+//   //Esta condición comprueba que no es entero
+//   console.log("la grilla no es cuadrada");
+// } else {
+//   for (let i = 0; i < n; i++) {
+//     grilla.push(arrayNumeros.slice(i * n, i * n + n));
+//   }
+
+//   // Comprobar filas
+//   let filasRepetidas = grilla.some((fila) => {
+//     return new Set(fila).size < fila.length;
+//   });
+//   // Comprobar columnas
+//   let columnaRepetidas = false;
+//   for (let c = 0; c < n; c++) {
+//     let columna = grilla.map((fila) => fila[c]);
+//     if (new Set(columna).size < n) {
+//       columnaRepetidas = true;
+//       break;
+//     }
+//   }
+//   //Comprobar diagonales
+//   let diagonalPrincipal = [];
+//   let diagonalSecundaria = [];
+//   for (i = 0; i < n; i++) {
+//     diagonalPrincipal.push(grilla[i][i]);
+//     diagonalSecundaria.push(grilla[i][n - 1 - i]);
+//   }
+
+//   let diagonalesRepetidas =
+//     new Set(diagonalPrincipal).size < diagonalPrincipal.length ||
+//     new Set(diagonalSecundaria).size < diagonalSecundaria.length;
+//   // --- Mostrar resultados ---
+//   console.log("Fila repetida:", filasRepetidas);
+//   console.log("Columna repetida:", columnaRepetidas);
+//   console.log("Diagonal repetida:", diagonalesRepetidas);
+// }
+
+// ----- Ejercicio 24 -------
+// Funciones
+// function desordenarArray(opciones) {
+//   return opciones.sort(() => Math.random() - 0.5);
+// }
+
+// function crearGrilla(grilla, opciones) {
+//   for (let i = 0; i < 3; i++) {
+//     grilla.push(opciones.slice(i * 3, i * 3 + 3));
+//   }
+//   return grilla;
+// }
+
+// function revisarGrilla(grilla) {
+//   return grilla.every((fila) => {
+//     return fila.every((elemento) => {
+//       return elemento === "descubierto" || elemento === "mina";
+//     });
+//   });
+// }
+
+// // Codigo Principal
+// let arrayInicial = [
+//   "mina",
+//   "vacia",
+//   "vacia",
+//   "mina",
+//   "vacia",
+//   "vacia",
+//   "mina",
+//   "vacia",
+//   "vacia",
+// ];
+
+// // Creamos un array random
+// let arrayOrdenado = desordenarArray(arrayInicial);
+
+// // Creamos la grilla
+// let grilla = crearGrilla([], arrayOrdenado);
+// console.log(grilla);
+
+// // Estado de victoria
+// let grillaDescubierta = false;
+
+// // Bucle de juego
+// while (grillaDescubierta === false) {
+//   // Pide coordenadas
+//   let x = Number(prompt("Introduce la coordenada x (1-3)")) - 1;
+//   let y = Number(prompt("Introduce la coordenada y (1-3)")) - 1;
+
+//   if (grilla[x][y] === "mina") {
+//     console.log("💥 Oh no, has pisado una mina. ¡Perdiste!");
+//     break;
+//   } else if (grilla[x][y] === "vacia") {
+//     console.log("✅ Casilla vacía, sigue jugando...");
+//     grilla[x][y] = "descubierto";
+//   } else if (grilla[x][y] === "descubierto") {
+//     console.log("⚠️ Esa casilla ya estaba descubierta. Elige otra.");
+//   }
+
+//   // Verificamos si ya se descubrió todo
+//   grillaDescubierta = revisarGrilla(grilla);
+
+//   if (grillaDescubierta) {
+//     console.log("🎉 ¡Felicidades! Descubriste todas las casillas sin minas.");
+//   }
+// }
+
+// --------- EJERCICIO 25 ---------------
+// Funciones
+// function crearCategoria(categoria) {
+//   programaTareas[categoria] = [];
+// }
+
+// function crearTarea(categoria, tarea) {
+//   programaTareas[categoria].push(tarea);
+// }
+
+// function mostrarCategorias() {
+//   let keys = Object.keys(programaTareas);
+//   if (keys.length === 0) {
+//     console.log("⚠️ No hay categorías aún.");
+//     return [];
+//   }
+//   console.log("📂 Categorías disponibles:");
+//   keys.forEach((cat, index) => {
+//     console.log(`${index + 1}. ${cat}`);
+//   });
+//   return keys;
+// }
+
+// function mostrarTareasOrganizadas() {
+//   let keys = Object.keys(programaTareas);
+//   if (keys.length === 0) {
+//     console.log("⚠️ No hay categorías ni tareas.");
+//     return;
+//   }
+
+//   console.log("📋 Tareas organizadas:");
+//   keys.forEach((cat) => {
+//     console.log(`\n📂 ${cat}:`);
+//     if (programaTareas[cat].length === 0) {
+//       console.log("   (Sin tareas todavía)");
+//     } else {
+//       programaTareas[cat].forEach((tarea, i) => {
+//         console.log(`   ${i + 1}. ${tarea}`);
+//       });
+//     }
+//   });
+// }
+
+// // Programa principal
+// let programaTareas = {};
+// let continuar = true;
+
+// while (continuar) {
+//   let opcion = prompt(
+//     "Elige una opción:\n1. Crear categoría\n2. Agregar tarea\n3. Ver todas\n4. Salir"
+//   );
+
+//   switch (opcion) {
+//     case "1": {
+//       let categoria = prompt("Ingrese el nombre de la nueva categoría:");
+//       if (!programaTareas[categoria]) {
+//         crearCategoria(categoria);
+//         console.log(`✅ Categoría '${categoria}' creada.`);
+//       } else {
+//         console.log("⚠️ Esa categoría ya existe.");
+//       }
+//       break;
+//     }
+
+//     case "2": {
+//       let categorias = mostrarCategorias();
+//       if (categorias.length > 0) {
+//         let indice = Number(prompt("Elige el número de la categoría:")) - 1;
+//         if (indice >= 0 && indice < categorias.length) {
+//           let tarea = prompt("Ingrese el nombre de la tarea:");
+//           crearTarea(categorias[indice], tarea);
+//           console.log(`📝 Tarea añadida a '${categorias[indice]}'`);
+//         } else {
+//           console.log("⚠️ Opción inválida.");
+//         }
+//       }
+//       break;
+//     }
+
+//     case "3": {
+//       mostrarTareasOrganizadas();
+//       break;
+//     }
+
+//     case "4": {
+//       continuar = false;
+//       console.log("👋 Programa finalizado.");
+//       break;
+//     }
+
+//     default:
+//       console.log("⚠️ Opción inválida. Intenta de nuevo.");
+//   }
+// }
+// --- Ejercicio 26 ---
+// Functions
+// ----- Funciones -----
+
+function mover(tablero, dx, dy) {
+  let xOriginal = posicionViboraX;
+  let yOriginal = posicionViboraY;
+
+  // Actualizamos posición
+  posicionViboraX += dx;
+  posicionViboraY += dy;
+
+  // Wrap-around dinámico
+  if (posicionViboraX < 0) posicionViboraX = tablero[0].length - 1;
+  if (posicionViboraX >= tablero[0].length) posicionViboraX = 0;
+  if (posicionViboraY < 0) posicionViboraY = tablero.length - 1;
+  if (posicionViboraY >= tablero.length) posicionViboraY = 0;
+
+  // Validar casilla
+  const casilla = tablero[posicionViboraY][posicionViboraX];
+  if (casilla === "ladrillo") {
+    console.log("La víbora no puede avanzar en esa dirección.");
+    posicionViboraX = xOriginal;
+    posicionViboraY = yOriginal;
+  } else if (casilla === "manzana") {
+    console.log(
+      `La víbora se ha comido la manzana en (${posicionViboraX},${posicionViboraY})`
+    );
+    tablero[posicionViboraY][posicionViboraX] = "vacio";
+  }
 }
 
-
-
-
-
-for (let i=0;i<3;i++){
-  grilla.push(arrayNumeros.slice(i*3,i*3+3));
+function imprimirTablero(tablero, x, y) {
+  console.clear(); // Limpiar consola para mejor visualización
+  for (let i = 0; i < tablero.length; i++) {
+    const fila = tablero[i].map((celda, j) =>
+      i === y && j === x ? "V" : celda
+    );
+    console.log(fila.join(" | "));
+  }
+  console.log("\n");
 }
+
+// ----- Código principal -----
+
+const tablero = [
+  ["trebol", "trebol", "manzana", "trebol", "trebol"],
+  ["manzana", "ladrillo", "trebol", "ladrillo", "manzana"],
+  ["trebol", "ladrillo", "vivora", "trebol", "trebol"],
+  ["trebol", "manzana", "trebol", "ladrillo", "trebol"],
+  ["manzana", "trebol", "trebol", "manzana", "ladrillo"],
+  ["trebol", "trebol", "trebol", "trebol", "manzana"],
+];
+
+let posicionViboraX = 2;
+let posicionViboraY = 2;
+
+let continuar = true;
+
+while (continuar) {
+  imprimirTablero(tablero, posicionViboraX, posicionViboraY);
+
+  const movimiento = prompt(
+    "Elige un movimiento:\n1->Abajo\n2->Arriba\n3->Derecha\n4->Izquierda"
+  );
+
+  switch (movimiento) {
+    case "1":
+      mover(tablero, 0, 1);
+      break; // Abajo
+    case "2":
+      mover(tablero, 0, -1);
+      break; // Arriba
+    case "3":
+      mover(tablero, 1, 0);
+      break; // Derecha
+    case "4":
+      mover(tablero, -1, 0);
+      break; // Izquierda
+    default:
+      console.log("Movimiento inválido");
+      break;
+  }
+
+  // Revisar si quedan manzanas
+  continuar = tablero.some((fila) => fila.includes("manzana"));
+}
+
+console.log("¡Has comido todas las manzanas! 🐍🍎");
