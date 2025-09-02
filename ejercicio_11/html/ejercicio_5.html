@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title></title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <meta name="description" content="" />
+
+    <meta property="og:title" content="" />
+    <meta property="og:type" content="" />
+    <meta property="og:url" content="" />
+    <meta property="og:image" content="" />
+    <meta property="og:image:alt" content="" />
+
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="icon.png" />
+
+    <link rel="manifest" href="../site.webmanifest" />
+    <meta name="theme-color" content="#fafafa" />
+  </head>
+
+  <body>
+    <h1>Ejercicio Anotador</h1>
+    <ul>
+      <li><a href="../index.html">Volver</a></li>
+    </ul>
+    <script>
+      /*
+## Celular
+
+  - **Propiedades**
+    - contactos (array de objetos), inicializa vacío
+    - llamadas (array de strings), inicializa vacío
+  - **Métodos**
+    - **`agregarContacto(contacto)`** agrega `contacto` a `contactos`
+    - **`buscarPorNombre(nombre)`** devuelve el contacto con dicho nombre en el array `contactos` o `undefined` si no lo encuentra
+    - **`buscarPorNumero(numero)`** devuelve el contacto con dicho número en el array `contactos` o `undefined` si no lo encuentra
+    - **`eliminarContacto(nombre)`**` elimina el contacto con nombre `nombre` de `contactos`
+    - **`llamar(nombre)`** si existe un contacto con nombre `nombre` en la lista `contactos`, agrega a `llamadas` un string que representa un registro de la misma, usando la plantilla `Llamada a ${nombre} con número ${numero} realizada
+    - **`verContactos()`** devuelve un string listando todos los contactos, con sus nombres y números
+    - **`verHistorial()`** devuelve un string con la lista de llamadas realizadas
+  - **Observaciones**
+    - `contacto` es un objeto con las propiedades `nombre` y `numero`
+    - no se puede agregar un contacto si ya existe en el celular alguno con el mismo nombre o número
+    */
+   class Celular{
+    constructor(){
+      this.contactos=[];
+      this.llamadas=[];
+    }
+    agregarContacto(contacto){
+      let coincidencia=this.contactos.some((element)=>element.nombre===contacto.nombre || element.numero===contacto.numero);
+      if (coincidencia===true){
+        throw new Error('El nombre o numero ya esta añadido como contacto');
+      } else {
+        this.contactos.push(contacto);
+        return this;
+      }
+    }
+    buscarPorNombre(nombre){
+      let encontrado = this.contactos.filter((element)=>element.nombre===nombre);
+      return encontrado;
+
+    }
+    buscarPorNumero(numero){
+      let encontrado = this.contactos.filter((element)=>element.numero===numero);
+      return encontrado;
+    }
+    eliminarContacto(nombre) {
+      const indice = this.contactos.findIndex(c => c.nombre === nombre);
+      if (indice !== -1) { // si existe
+        this.contactos.splice(indice, 1);
+        console.log(`${nombre} eliminado correctamente.`);
+      } else {
+        console.log(`No se encontró el contacto con nombre "${nombre}".`);
+      }
+}
+    llamar(nombre){
+      let llamada=this.contactos.find((element)=>{
+        return element.nombre===nombre
+      })
+      if (llamada!==undefined){
+        this.llamadas.push(`llamada a ${llamada.nombre} con numero ${llamada.numero}`)
+        return this
+      }else {
+        console.log(`No se encontro el contacto con nombre ${nombre}`);
+      }
+    }
+    verContactos(){
+      return this.contactos.map((contacto)=> `${contacto.nombre}:${contacto.numero}`
+      )
+    }
+    verHistorial(){
+      return this.llamadas.forEach((llamada,i)=>console.log(`${i+1}. ${llamada}`))
+      
+    }
+
+
+
+   }
+   const c= new Celular();
+    </script>
+  </body>
+</html>

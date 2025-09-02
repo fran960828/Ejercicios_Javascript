@@ -22,7 +22,7 @@
   </head>
 
   <body>
-    <h1>Ejercicio Calculadora</h1>
+    <h1>Ejercicio Anotador</h1>
     <ul>
       <li><a href="../index.html">Volver</a></li>
     </ul>
@@ -52,12 +52,55 @@
     4. Leer libro
     ```
        */
-      class Anotador {
-        constructor(titulo) {
-          this.titulo = titulo;
-          this.notas = [];
-        }
-      }
+class Anotador {
+  constructor(titulo) {
+    this.titulo = titulo;
+    this.notas = [];
+  }
+
+  agregar(nota) {
+    this.notas.push(nota);
+    return this;
+  }
+
+  actualizarNota(id, nota) {
+    if (id >= 0 && id < this.notas.length) {
+      this.notas[id] = nota;
+    } else {
+      console.log('ID de nota inválido');
+    }
+    return this;
+  }
+
+  obtenerNota(id) {
+    if (id >= 0 && id < this.notas.length) {
+      console.log(this.notas[id]);
+    } else {
+      console.log('ID de nota inválido');
+    }
+  }
+
+  eliminarNota(id) {
+    if (id >= 0 && id < this.notas.length) {
+      this.notas.splice(id, 1);
+    } else {
+      console.log('ID de nota inválido');
+    }
+  }
+
+  eliminarNotas() {
+    this.notas = [];
+  }
+
+  listarNotas() {
+    console.log(this.titulo);
+    console.log('______________________');
+    for (let nota of this.notas) {
+      console.log(`- ${nota}`);
+    }
+  }
+}
+const a=new Anotador('lista compra')
     </script>
   </body>
 </html>
