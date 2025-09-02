@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title></title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <meta name="description" content="" />
+
+    <meta property="og:title" content="" />
+    <meta property="og:type" content="" />
+    <meta property="og:url" content="" />
+    <meta property="og:image" content="" />
+    <meta property="og:image:alt" content="" />
+
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="icon.png" />
+
+    <link rel="manifest" href="../site.webmanifest" />
+    <meta name="theme-color" content="#fafafa" />
+  </head>
+
+  <body>
+    <h1>Ejercicio Coche</h1>
+    <ul>
+      <li><a href="../index.html">Volver</a></li>
+    </ul>
+    <script>
+      /*
+   ## Auto
+  - **Propiedades**
+    - `encendido` (booleano), inicializa en `false`
+    - `velocidad` (número), inicializa en 0
+    - `marca` (string)
+    - `modelo` (número)
+    - `patente` (string)
+  - **Constructor**
+    - pide como argumentos `marca`, `modelo`, `patente` y los asigna a sus respectivas propiedades
+  - **Métodos**
+    - **`arrancar()`** pone `encendido` en `true`
+    - **`apagar()`** pone `encendido` en `false`
+    - **`acelerar()`** suma 10 a `velocidad` y actualiza dicha propiedad
+    - **`desacelerar()`** resta 10 a `velocidad` y actualiza dicha propiedad
+    - **`toString()`** devuelve un *string* con la siguiente plantilla `${marca} ${modelo}, patente ${patente}`
+  - **Observaciones**
+    - sólo se puede acelerar o desacelerar si el auto se encuentra prendido
+    - sólo se puede apagar el auto si la velocidad es 0
+    - la velocidad mínima es 0
+  */
+      class Auto {
+        constructor(marca, modelo, patente) {
+          this.encendido = false;
+          this.velocidad = 0;
+          this.marca = marca;
+          this.modelo = modelo;
+          this.patente = patente;
+        }
+        arrancar() {
+          this.encendido = true;
+          console.log("El coche esta encendido");
+          return this;
+        }
+        apagar() {
+          if (this.velocidad === 0) {
+            this.encendido = false;
+          } else {
+            throw Error("No puedes apagar el coche en marcha");
+          }
+          return this;
+        }
+        acelerar() {
+          if (this.encendido === true) {
+            this.velocidad += 10;
+          } else {
+            throw Error("No puedes acelerar, el coche esta parado");
+          }
+          return this;
+        }
+        desacelerar() {
+          if (this.encendido === true && this.velocidad > 0) {
+            this.velocidad -= 10;
+          } else {
+            throw Error("El coche esta parado");
+          }
+          return this;
+        }
+        toString() {
+          return `${this.marca} ${this.modelo}, patente ${this.patente}`;
+        }
+      }
+      const c1 = new Auto("Audi", 4, "gdjfjfjl");
+      c1.arrancar();
+      c1.acelerar();
+      c1.desacelerar();
+      c1.apagar();
+    </script>
+  </body>
+</html>

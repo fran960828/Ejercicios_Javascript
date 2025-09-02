@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title></title>
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="../css/style.css" />
     <meta name="description" content="" />
 
     <meta property="og:title" content="" />
@@ -17,67 +17,78 @@
     <link rel="icon" href="/icon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="icon.png" />
 
-    <link rel="manifest" href="site.webmanifest" />
+    <link rel="manifest" href="../site.webmanifest" />
     <meta name="theme-color" content="#fafafa" />
   </head>
 
   <body>
-   <h1>Ejercicios CLASES JAVASCRIPT</h1>
-   <nav>
+    <h1>Ejercicio Calculadora</h1>
     <ul>
-      <li><a href="html/ejercicio_1.html">Ejercicio 1</a></li>
+      <li><a href="../index.html">Volver</a></li>
     </ul>
-   </nav>
-    <script src="js/app.js"></script>
-  </body>
-  <script>
-/*
-## Calculadora
-  - **Propiedades**
-    - `resultado` (número), inicializa en 0
-  - **Métodos**
-    - **`sumar(numero)`**: suma *numero* a `resultado`, y actualiza `resultado` con el valor de dicha operación
-    - **`restar(numero)`**: suma *numero* a `resultado`, y actualiza `resultado` con el valor de dicha operación
-    - **`multiplicar(numero)`**: suma *numero* a `resultado`, y actualiza `resultado` con el valor de dicha operación
-    - **`dividir(numero)`**: divide *resultado* por `numero`, y actualiza `resultado` con el valor de dicha operación
-    - **`obtenerResultado()`**: devuelve `resultado`
-    - **`reiniciar()`**: pone resultado en 0
-  - **Observaciones**
-    - arrojar un error cuando el argumento ingresado no sea un número, con `Number.isFinite()`
-    - arrojar un error cuando se intenta dividir por 0
-*/
-class Calculadora {
-    constructor(resultado=0){
-        this.resultado=resultado
-    }
-    suma(numero) {
-        this.resultado+=numero
-        return this
-    }
-    resta(numero) {
-        this.resultado-=numero
-        return this
-    }
-    multiplicacion(numero) {
-        this.resultado*=numero
-        return this
-    }
-    division(numero){
-        if (numero===0){
-            throw new error('Error, no se puede dividir por cero');
+    <script>
+      /*
+  ## Calculadora
+    - **Propiedades**
+      - `resultado` (número), inicializa en 0
+    - **Métodos**
+      - **`sumar(numero)`**: suma *numero* a `resultado`, y actualiza `resultado` con el valor de dicha operación
+      - **`restar(numero)`**: suma *numero* a `resultado`, y actualiza `resultado` con el valor de dicha operación
+      - **`multiplicar(numero)`**: suma *numero* a `resultado`, y actualiza `resultado` con el valor de dicha operación
+      - **`dividir(numero)`**: divide *resultado* por `numero`, y actualiza `resultado` con el valor de dicha operación
+      - **`obtenerResultado()`**: devuelve `resultado`
+      - **`reiniciar()`**: pone resultado en 0
+    - **Observaciones**
+      - arrojar un error cuando el argumento ingresado no sea un número, con `Number.isFinite()`
+      - arrojar un error cuando se intenta dividir por 0
+  */
+      class Calculadora {
+        constructor(resultado = 0) {
+          this._resultado = resultado;
         }
-        this.resultado/=numero
-        return this
-    }
-    get(){
-        return this.resultado
-    }
-}
-const calculo1= new Calculadora()
-calculo1.suma(5)
-calculo1.get()
+        suma(numero) {
+          if (!Number.isFinite(numero)) {
+            throw Error("No has introducido un numero");
+          } else {
+            this._resultado += numero;
+            return this;
+          }
+        }
+        resta(numero) {
+          if (!Number.isFinite(numero)) {
+            throw Error("No has introducido un numero");
+          } else {
+            this._resultado -= numero;
+            return this;
+          }
+        }
+        multiplicacion(numero) {
+          if (!Number.isFinite(numero)) {
+            throw Error("No has introducido un numero");
+          } else {
+            this._resultado *= numero;
+            return this;
+          }
+        }
+        division(numero) {
+          if (numero === 0 || !Number.isFinite(numero)) {
+            throw new Error("Error");
+          } else {
+            this._resultado /= numero;
+            return this;
+          }
+        }
+        get resultado() {
+          return this._resultado;
+        }
+        set resultado(valor = 0) {
+          this._resultado = Number.isFinite(valor) ? valor : 0;
+        }
+      }
 
-
-
-  </script>
+      const a = new Calculadora();
+      a.suma(5);
+      console.log(a.resultado);
+    </script>
+  </body>
 </html>
