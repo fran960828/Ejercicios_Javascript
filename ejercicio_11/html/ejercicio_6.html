@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title></title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <meta name="description" content="" />
+
+    <meta property="og:title" content="" />
+    <meta property="og:type" content="" />
+    <meta property="og:url" content="" />
+    <meta property="og:image" content="" />
+    <meta property="og:image:alt" content="" />
+
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="icon.png" />
+
+    <link rel="manifest" href="../site.webmanifest" />
+    <meta name="theme-color" content="#fafafa" />
+  </head>
+
+  <body>
+    <h1>Ejercicio Anotador</h1>
+    <ul>
+      <li><a href="../index.html">Volver</a></li>
+    </ul>
+    <script>
+      /*
+      ## BilleteraVirtual
+
+        - **Propiedades**
+          - monto
+          - operaciones (array de objetos), inicializa vacío
+        - **Constructor**
+          - toma como argumento `montoInicial` y lo asigna a `monto`
+        - **Métodos**
+          - **`agregarGasto(gasto)`** agrega `gasto` a operaciones
+          - **`agregarGanancia(ganancia)`** agrega `ganancia` a operaciones
+          - **`obtenerGastosPorMes(mes)`** devuelve un array con todos los gastos hechos en `mes`
+          - **`obtenerGanaciasPorMes(mes)`** devuelve un array con todas los ganancias obtenidas en `mes`
+          - **`obtenerGastosPorCategoria(categoria)`** devuelve un array con todos los gastos de cierta `categoria`
+          - **`obtenerGanaciasPorCategoria(categoria)`** devuelve un array con todas las ganancias de cierta `categoria`
+          - **`calcularTotalPorMes(mes)`** devuelve el total resultante de restar todos los gastos hechos y sumar todas las ganancias obtenidas en un cierto `mes`
+          - **`calcularTotalPorCategoria(categoria)`** devuelve el total resultante de restar todos los gastos hechos y sumar todas las ganancias obtenidas en cierta `categoria
+          - **`obtenerMonto()**` devuelve `monto`
+        - **Observaciones**
+          - los objetos `gasto` y `ganancia` contiene las propiedades:
+            - `descripcion` (string)
+            - `cantidad` (número)
+            - `fecha` (Date)
+            - `categoria` (string)
+          - cuando se agrega `gasto` o `ganancia` al array operaciones, hay que agregarle a dicha objeto la propiedad `tipo` con el valor `"GASTO"` o `"GANANCIA"` según corresponda, para poder identificarlos en las siguientes operaciones
+          - cuando se devuelve un array con gastos o ganancias, hay que borrar de los objetos que se devuelven la propiedad `tipo`
+          */
+      class BilleteraVirtual {
+        #monto;
+        #operaciones;
+        constructor(montoInicial) {
+          this.#monto = montoInicial;
+          this.#operaciones = [];
+        }
+        agregarGasto(gasto) {
+          this.#operaciones.push(gasto);
+        }
+        agregarGanancia(ganancia) {
+          this.#operaciones.push(ganancia);
+        }
+        obtenerGastosPorMes(mes) {
+          return this.#operaciones.filter((g) => {
+            const fecha = new Date(g.fecha);
+            const mesFecha = fecha.toLocaleString("es-ES", { month: "long" });
+            return (
+              g.tipo === "GASTO" && mesFecha.toLowerCase() === mes.toLowerCase()
+            );
+          });
+        }
+        obtenerGananciasPorMes(mes) {
+          return this.#operaciones.filter((g) => {
+            const fecha = new Date(g.fecha);
+            const mesFecha = fecha.toLocaleString("es-ES", { month: "long" });
+            return (
+              g.tipo === "GANANCIA" &&
+              mesFecha.toLowerCase() === mes.toLowerCase()
+            );
+          });
+        }
+        obtenerGastosPorCategoria(categoria) {
+          return this.#operaciones.filter((g) => {
+            return (
+              g.tipo === "GASTO" &&
+              g.categoria.toLowerCase() === categoria.toLowerCase()
+            );
+          });
+        }
+        obtenerGananciasPorCategoria(categoria) {
+          return this.#operaciones.filter((g) => {
+            return (
+              g.tipo === "GANANCIA" &&
+              g.categoria.toLowerCase() === categoria.toLowerCase()
+            );
+          });
+        }
+        calcularTotalPorMes(mes) {
+          let gastosMes = this.obtenerGastosPorMes(mes).reduce((total, e) => {
+            total += e.cantidad;
+            return total;
+          });
+          let ganaciasMes = this.obtenerGananciasPorMes(mes).reduce(
+            (total, e) => {
+              total += e.cantidad;
+              return total;
+            }
+          );
+          this.#monto = gananciasMes - gastosMes;
+          return this.#monto;
+        }
+        calcularTotalPorCategoria(categoria) {
+          let gastosCategoria = this.obtenerGastosPorCategoria(
+            categoria
+          ).reduce((total, e) => {
+            total += e.cantidad;
+            return total;
+          });
+          let ganaciasCategoria = this.obtenerGananciasPorCategoria(
+            categoria
+          ).reduce((total, e) => {
+            total += e.cantidad;
+            return total;
+          });
+          let montoCategoria = ganaciasCategoria - gastosCategoria;
+          return montoCategoria;
+        }
+      }
+    </script>
+  </body>
+</html>
