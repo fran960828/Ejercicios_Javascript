@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title></title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <meta name="description" content="" />
+
+    <meta property="og:title" content="" />
+    <meta property="og:type" content="" />
+    <meta property="og:url" content="" />
+    <meta property="og:image" content="" />
+    <meta property="og:image:alt" content="" />
+
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="icon.png" />
+
+    <link rel="manifest" href="../site.webmanifest" />
+    <meta name="theme-color" content="#fafafa" />
+  </head>
+
+  <body>
+    <h1>Ejercicio Anotador</h1>
+    <ul>
+      <li><a href="../index.html">Volver</a></li>
+    </ul>
+    <script>
+      /*
+                  ## Carrito con Producto
+
+              ### Producto
+              - **Propiedades**
+                - id (string)
+                - nombre (string)
+                - precio (número)
+                - cantidad (número)
+                - tieneImpuesto (booleano)
+              - **Constructor**
+                - toma como argumentos `nombre`, `precio`, `cantidad` y `tieneImpuesto` y los asigna a sus respectivas propiedades
+                - genera un `id` automático y lo asigna a su propiedad
+              - **Métodos**
+                - getters para obteners los valores de todas las propiedades
+                - setter para modificar el valor de `cantidad`
+              - **Observaciones**
+                - la cantidad nunca puede ser 0
+                - el precio no puede ser menor a 0
+                ### Carrito
+              - **Propiedades**
+                - productos (array de `Producto`), inicializa vacío
+              - **Métodos**
+                - **`agregarProducto(producto)`** agrega `producto` a `productos
+                - **`actualizarCantidadProducto(id, cantidad)`** actualiza la `cantidad` del producto en `productos` con `id`
+                - **`eliminarProducto(id)`** elimina de `productos` el producto con `id`
+                - **`calcularTotal()`** devuelve el total del carrito (con impuestos incluidos)
+                - **`calcularImpuestoTotal()`** devuelve el total de la suma de los impuestos de cada producto que `tieneImpuesto`
+                - **`obtenerCantidadTotal()`** devuelve la cantidad total de ítems en el producto
+                - **`toString()`** devuelve un string con
+                  - la lista de productos, detallando nombre, precio por unidad y cantidad
+                  - subtotal de todos los productos sin sumar impuesto
+                  - subtotal de todos los impuestos sumados
+                  - total final (suma de los subtotales)
+              - **Observaciones**
+                - el impuesto es del 10% sobre el precio del producto
+            */
+      class CarritoDeProductos {
+        #id;
+        #nombre;
+        #precio;
+        #cantidad;
+        #tieneImpuesto;
+
+        constructor(nombre, precio, cantidad, tieneImpuesto) {
+          if (precio < 0) {
+            throw new Error("El precio no puede ser menor de 0");
+          }
+          if (cantidad <= 0) {
+            throw new Error("La cantidad debe ser mayor que 0");
+          }
+          this.#id = crypto.randomUUID();
+          this.#nombre = nombre;
+          this.#precio = precio;
+          this.#cantidad = cantidad;
+          this.#tieneImpuesto = tieneImpuesto;
+        }
+
+        getId() {
+          return this.#id;
+        }
+        getNombre() {
+          return this.#nombre;
+        }
+        getPrecio() {
+          return this.#precio;
+        }
+        getCantidad() {
+          return this.#cantidad;
+        }
+        getTieneImpuesto() {
+          return this.#tieneImpuesto;
+        }
+
+        setCantidad(nuevaCantidad) {
+          if (nuevaCantidad <= 0) {
+            throw new Error("La cantidad debe ser mayor que 0");
+          }
+          this.#cantidad = nuevaCantidad;
+        }
+      }
+
+      class Carrito {
+        #productos;
+
+        constructor() {
+          this.#productos = [];
+        }
+
+        agregarProducto(producto) {
+          if (producto.getCantidad() > 0 && producto.getPrecio() > 0) {
+            this.#productos.push(producto);
+          }
+        }
+
+        actualizarCantidadProducto(id, cantidad) {
+          if (cantidad > 0) {
+            this.#productos.forEach((producto) => {
+              if (producto.getId() === id) {
+                producto.setCantidad(cantidad); // ✅ usar setter
+              }
+            });
+          }
+        }
+
+        eliminarProducto(id) {
+          const index = this.#productos.findIndex(
+            (producto) => producto.getId() === id
+          );
+          if (index !== -1) {
+            this.#productos.splice(index, 1);
+          }
+        }
+
+        calcularTotal() {
+          const precioTotal = this.#productos.reduce((acumulador, producto) => {
+            const subtotal = producto.getCantidad() * producto.getPrecio();
+            return (
+              acumulador +
+              (producto.getTieneImpuesto() ? subtotal * 1.1 : subtotal)
+            );
+          }, 0);
+          return precioTotal;
+        }
+
+        calcularImpuestoTotal() {
+          const impuestoTotal = this.#productos.reduce(
+            (acumulador, producto) => {
+              if (producto.getTieneImpuesto()) {
+                return (
+                  acumulador +
+                  producto.getCantidad() * producto.getPrecio() * 0.1
+                );
+              }
+              return acumulador;
+            },
+            0
+          );
+          return impuestoTotal;
+        }
+
+        obtenerCantidadTotal() {
+          return this.#productos.reduce(
+            (acumulador, producto) => acumulador + producto.getCantidad(),
+            0
+          );
+        }
+
+        toString() {
+          const detalleProductos = this.#productos
+            .map((producto, i) => {
+              const subtotalSinImpuesto =
+                producto.getCantidad() * producto.getPrecio();
+              const subtotalConImpuesto = producto.getTieneImpuesto()
+                ? subtotalSinImpuesto * 1.1
+                : subtotalSinImpuesto;
+
+              return `Producto ${i + 1}
+----------------------------
+Nombre: ${producto.getNombre()}
+Precio por Unidad: ${producto.getPrecio()}
+Cantidad: ${producto.getCantidad()}
+Subtotal sin impuestos: ${subtotalSinImpuesto.toFixed(2)}
+Subtotal con impuestos: ${subtotalConImpuesto.toFixed(2)}`;
+            })
+            .join("\n\n");
+
+          const totalFinal = this.calcularTotal().toFixed(2);
+          const impuestoTotal = this.calcularImpuestoTotal().toFixed(2);
+
+          return `${detalleProductos}
+
+============================
+Cantidad total de unidades: ${this.obtenerCantidadTotal()}
+Impuestos totales: ${impuestoTotal}
+TOTAL FINAL DEL CARRITO: ${totalFinal}`;
+        }
+      }
+      const carrito = new Carrito();
+
+      const television = new CarritoDeProductos("Televisión", 320, 2, true);
+      const ordenador = new CarritoDeProductos("Ordenador", 2400, 1, true);
+      const tablet = new CarritoDeProductos("Tablet", 700, 3, false);
+
+      carrito.agregarProducto(television);
+      carrito.agregarProducto(ordenador);
+      carrito.agregarProducto(tablet);
+
+      console.log(carrito.toString());
+    </script>
+  </body>
+</html>
