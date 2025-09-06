@@ -28,143 +28,128 @@
     </ul>
     <script>
       /*
-      ## BilleteraVirtual
+       ## Agenda con Tareas
 
-        - **Propiedades**
-          - monto
-          - operaciones (array de objetos), inicializa vacío
-        - **Constructor**
-          - toma como argumento `montoInicial` y lo asigna a `monto`
-        - **Métodos**
-          - **`agregarGasto(gasto)`** agrega `gasto` a operaciones
-          - **`agregarGanancia(ganancia)`** agrega `ganancia` a operaciones
-          - **`obtenerGastosPorMes(mes)`** devuelve un array con todos los gastos hechos en `mes`
-          - **`obtenerGanaciasPorMes(mes)`** devuelve un array con todas los ganancias obtenidas en `mes`
-          - **`obtenerGastosPorCategoria(categoria)`** devuelve un array con todos los gastos de cierta `categoria`
-          - **`obtenerGanaciasPorCategoria(categoria)`** devuelve un array con todas las ganancias de cierta `categoria`
-          - **`calcularTotalPorMes(mes)`** devuelve el total resultante de restar todos los gastos hechos y sumar todas las ganancias obtenidas en un cierto `mes`
-          - **`calcularTotalPorCategoria(categoria)`** devuelve el total resultante de restar todos los gastos hechos y sumar todas las ganancias obtenidas en cierta `categoria
-          - **`obtenerMonto()**` devuelve `monto`
-        - **Observaciones**
-          - los objetos `gasto` y `ganancia` contiene las propiedades:
-            - `descripcion` (string)
-            - `cantidad` (número)
-            - `fecha` (Date)
-            - `categoria` (string)
-          - cuando se agrega `gasto` o `ganancia` al array operaciones, hay que agregarle a dicha objeto la propiedad `tipo` con el valor `"GASTO"` o `"GANANCIA"` según corresponda, para poder identificarlos en las siguientes operaciones
-          - cuando se devuelve un array con gastos o ganancias, hay que borrar de los objetos que se devuelven la propiedad `tipo`
-          */
-      class BilleteraVirtual {
-        #monto;
-        #operaciones;
+      ### Tarea
+      - **Propiedades**
+        - id (string)
+        - descripcion (string)
+        - categoria (string)
+        - vencimiento (Date)
+        - finalizada (booleano), inicializa en `false`
+      - **Constructor**
+        - toma como argumentos `descripcion`, `categoria`, `vencimiento` y los asigna a sus propiedades
+        - genera un `id` automático y lo asigna a su propiedad
+      - **Métodos**
+        - **`finalizar()`** cambia `finalizada` a `true`
+        - getters para obtener los valores de todas las propiedades
 
-        constructor(montoInicial) {
-          this.#monto = montoInicial;
-          this.#operaciones = [];
+      ### Agenda
+      - **Propiedades**
+        - tareas (array de `Tarea`), inicializa vacío
+      - **Métodos**
+          - **`agregar(tarea)`** agrega `tarea` a `tareas`
+          - **`eliminar(id)`** elimina de `tareas` la tarea con `id`
+          - **`finalizar(id)`** finaliza la `Tarea` con `id`
+          - **`obtener(id)`** devuelve la tarea con `id`
+          - **`obtenerTodas()`** devuelve un array con todas las tareas
+          - **`filtrarActivas()`** devuelve un array de tareas que no estén finalizadas
+          - **`filtrarFinalizadas()`** devuelve un array de tareas que estén finalizadas
+          - **`filtrarPorCategoria(categoria)`** devuelve un array de tareas que tenga `categoria`
+          - **`filtrarPorVencimiento(fecha)`** devuelve un array de tareas que tenga vencimiento en `fecha`
+        */
+      class Tarea {
+        #id;
+        #descripcion;
+        #categoria;
+        #vencimiento;
+        #finalizada;
+        constructor(descripcion, categoria, vencimiento) {
+          this.#id = crypto.randomUUID();
+          this.#descripcion = descripcion;
+          this.#categoria = categoria;
+          this.#vencimiento = vencimiento;
+          this.#finalizada = false;
         }
-
-        agregarGasto(gasto) {
-          this.#operaciones.push({ ...gasto, tipo: "GASTO" });
-          this.#monto -= gasto.cantidad;
+        getId() {
+          return this.#id;
         }
-
-        agregarGanancia(ganancia) {
-          this.#operaciones.push({ ...ganancia, tipo: "GANANCIA" });
-          this.#monto += ganancia.cantidad;
+        getDescripcion() {
+          return this.#descripcion;
         }
-
-        #eliminarTipo(array) {
-          return array.map(({ tipo, ...resto }) => resto);
+        getCategoria() {
+          return this.#categoria;
         }
-
-        obtenerGastosPorMes(mes) {
-          const gastosMes = this.#operaciones.filter((g) => {
-            const fecha = new Date(g.fecha);
-            const mesFecha = fecha.toLocaleString("es-ES", { month: "long" });
-            return (
-              g.tipo === "GASTO" && mesFecha.toLowerCase() === mes.toLowerCase()
-            );
-          });
-          return this.#eliminarTipo(gastosMes);
+        getVencimiento() {
+          return this.#vencimiento;
         }
-
-        obtenerGananciasPorMes(mes) {
-          const gananciasMes = this.#operaciones.filter((g) => {
-            const fecha = new Date(g.fecha);
-            const mesFecha = fecha.toLocaleString("es-ES", { month: "long" });
-            return (
-              g.tipo === "GANANCIA" &&
-              mesFecha.toLowerCase() === mes.toLowerCase()
-            );
-          });
-          return this.#eliminarTipo(gananciasMes);
+        getFinalizada() {
+          return this.#finalizada;
         }
-
-        obtenerGastosPorCategoria(categoria) {
-          const gastosCategoria = this.#operaciones.filter(
-            (g) =>
-              g.tipo === "GASTO" &&
-              g.categoria.toLowerCase() === categoria.toLowerCase()
-          );
-          return this.#eliminarTipo(gastosCategoria);
-        }
-
-        obtenerGananciasPorCategoria(categoria) {
-          const gananciasCategoria = this.#operaciones.filter(
-            (g) =>
-              g.tipo === "GANANCIA" &&
-              g.categoria.toLowerCase() === categoria.toLowerCase()
-          );
-          return this.#eliminarTipo(gananciasCategoria);
-        }
-
-        calcularTotalPorMes(mes) {
-          const gastosMes = this.obtenerGastosPorMes(mes).reduce(
-            (total, e) => total + e.cantidad,
-            0
-          );
-          const gananciasMes = this.obtenerGananciasPorMes(mes).reduce(
-            (total, e) => total + e.cantidad,
-            0
-          );
-          return gananciasMes - gastosMes;
-        }
-
-        calcularTotalPorCategoria(categoria) {
-          const gastosCategoria = this.obtenerGastosPorCategoria(
-            categoria
-          ).reduce((total, e) => total + e.cantidad, 0);
-          const gananciasCategoria = this.obtenerGananciasPorCategoria(
-            categoria
-          ).reduce((total, e) => total + e.cantidad, 0);
-          return gananciasCategoria - gastosCategoria;
-        }
-
-        obtenerMonto() {
-          return this.#monto;
+        setFinalizar() {
+          this.#finalizada = true;
         }
       }
-      const billetera = new BilleteraVirtual(1000);
 
-      billetera.agregarGasto({
-        descripcion: "Comida",
-        cantidad: 200,
-        fecha: "2023-09-03",
-        categoria: "alimentación",
-      });
-      console.log(billetera.obtenerMonto()); // 800
+      class Agenda {
+        constructor() {
+          this.tareas = [];
+        }
+        agregarTarea(tarea) {
+          this.tareas.push(tarea);
+        }
+        eliminarTarea(id) {
+          const index = this.tareas.findIndex((tarea) => tarea.getId() === id);
+          if (index !== -1) {
+            this.tareas.splice(index, 1);
+          } else {
+            console.warn(`La tarea con id ${id} no ha sido encontrada`);
+          }
+        }
+        finalizarTarea(id) {
+          const tarea = this.tareas.find((tarea) => tarea.getId() === id);
+          if (tarea) {
+            tarea.setFinalizar();
+          } else {
+            console.warn("Tarea no encontrada");
+          }
+        }
+        obtenerTarea(id) {
+          return this.tareas.find((tarea) => tarea.getId() === id || null);
+        }
+        obtenerTodasTarea() {
+          return this.tareas;
+        }
+        filtrarActivas() {
+          return this.tareas.filter((tarea) => tarea.getFinalizada() === false);
+        }
+        filtrarFinalizadas() {
+          return this.tareas.filter((tarea) => tarea.getFinalizada() === true);
+        }
+        filtrarPorCategoria(categoria) {
+          return this.tareas.filter(
+            (tarea) => tarea.getCategoria() === categoria
+          );
+        }
+        filtrarPorFecha(fecha) {
+          return this.tareas.filter(
+            (tarea) =>
+              new Date(tarea.getVencimiento()).toDateString() ===
+              new Date(fecha).toDateString()
+          );
+        }
+      }
+      const tarea1 = new Tarea("Toma de muestras", "Trabajo", "2025-09-05");
+      const tarea2 = new Tarea("Renovar DNI", "Personal", "2025-09-05");
+      const tarea3 = new Tarea("Revisar trampas", "Trabajo", "2025-09-06");
 
-      billetera.agregarGanancia({
-        descripcion: "Sueldo",
-        cantidad: 1500,
-        fecha: "2023-09-05",
-        categoria: "trabajo",
-      });
-      console.log(billetera.obtenerMonto()); // 2300
-
-      console.log(billetera.calcularTotalPorMes("septiembre")); // 1300
-      console.log(billetera.obtenerGastosPorCategoria("alimentación"));
-      // [{ descripcion: "Comida", cantidad: 200, fecha: "2023-09-03", categoria: "alimentación" }]
+      const agenda = new Agenda();
+      agenda.agregarTarea(tarea1);
+      agenda.agregarTarea(tarea2);
+      agenda.agregarTarea(tarea3);
+      agenda.finalizarTarea(tarea2.getId());
+      console.log(agenda.obtenerTarea(tarea1.getId()));
+      console.log(agenda.filtrarPorFecha("2025-09-05"));
     </script>
   </body>
 </html>

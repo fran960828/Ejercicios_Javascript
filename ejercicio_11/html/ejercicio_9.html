@@ -28,143 +28,202 @@
     </ul>
     <script>
       /*
-      ## BilleteraVirtual
+  
+## Librería con Libros con Autor
 
-        - **Propiedades**
-          - monto
-          - operaciones (array de objetos), inicializa vacío
-        - **Constructor**
-          - toma como argumento `montoInicial` y lo asigna a `monto`
-        - **Métodos**
-          - **`agregarGasto(gasto)`** agrega `gasto` a operaciones
-          - **`agregarGanancia(ganancia)`** agrega `ganancia` a operaciones
-          - **`obtenerGastosPorMes(mes)`** devuelve un array con todos los gastos hechos en `mes`
-          - **`obtenerGanaciasPorMes(mes)`** devuelve un array con todas los ganancias obtenidas en `mes`
-          - **`obtenerGastosPorCategoria(categoria)`** devuelve un array con todos los gastos de cierta `categoria`
-          - **`obtenerGanaciasPorCategoria(categoria)`** devuelve un array con todas las ganancias de cierta `categoria`
-          - **`calcularTotalPorMes(mes)`** devuelve el total resultante de restar todos los gastos hechos y sumar todas las ganancias obtenidas en un cierto `mes`
-          - **`calcularTotalPorCategoria(categoria)`** devuelve el total resultante de restar todos los gastos hechos y sumar todas las ganancias obtenidas en cierta `categoria
-          - **`obtenerMonto()**` devuelve `monto`
-        - **Observaciones**
-          - los objetos `gasto` y `ganancia` contiene las propiedades:
-            - `descripcion` (string)
-            - `cantidad` (número)
-            - `fecha` (Date)
-            - `categoria` (string)
-          - cuando se agrega `gasto` o `ganancia` al array operaciones, hay que agregarle a dicha objeto la propiedad `tipo` con el valor `"GASTO"` o `"GANANCIA"` según corresponda, para poder identificarlos en las siguientes operaciones
-          - cuando se devuelve un array con gastos o ganancias, hay que borrar de los objetos que se devuelven la propiedad `tipo`
-          */
-      class BilleteraVirtual {
-        #monto;
-        #operaciones;
+  ### Autor
+  - **Propiedades**
+    - nombre (string)
+    - nacionalidad (string)
+  - **Constructor**
+    - pide como argumentos `nombre` y `nacionalidad` y los asigna a sus respectivas propiedades
+  - **Métodos**
+      - getters para obtener los valores de todas las propiedades
 
-        constructor(montoInicial) {
-          this.#monto = montoInicial;
-          this.#operaciones = [];
+  ### Libro
+  - **Propiedades**
+    - id (string)
+    - titulo (string)
+    - autor (`Autor`)
+    - precio (número)
+    - genero (string)
+    - stock (número)
+  - **Constructor**
+    - genera un `id` automático y lo asigna a su propiedad
+    - el resto de propiedades las pide como argumentos y las asigna según corresponda
+  - **Métodos**
+    - **`tieneStock()`** devuelve `true` si `stock` es mayor a 0, `false` sino
+    - getters para obtener los valores de todas las propiedades, menos `stock`
+    - setter para modificar los valores de `precio` y `stock`
+  - **Observaciones**
+    - `stock` y `precio` tienen como valor mínimo 0
+
+  ### Libreria
+  - **Propiedades**
+    - libros (array de `Libro), inicializa vacío
+    - ganancias (número), inicializa en 0
+  - **Métodos**
+    - **`agregar(libro)`** agrega `libro` a `libros`
+    - **`eliminar(id)`** elimina de `libros` el libro con `id`
+    - **`buscarPorId(id)`** devuelve la información de un libro con `id`
+    - **`buscarPorTitulo(titulo)`** devuelve la información de un libro con `titulo`
+    - **`filtrarPorAutor(autor)`** devuelve un array de libros escritos por `autor`
+    - **`filtrarPorGenero(genero)`** devuelve un array de libros con `genero`
+    - **`comprarLibros(idLibros)`** toma un array de ids de libros, si tienen stock, reduce el stock de dichos libros en 1 y suma a ganancias el precio de cada libro comprado
+    - **`obtenerGanancias`** devuelve `ganancias`
+    <br>*/
+      class Autor {
+        #nombre;
+        #nacionalidad;
+        constructor(nombre, nacionalidad) {
+          this.#nombre = nombre;
+          this.#nacionalidad = nacionalidad;
         }
-
-        agregarGasto(gasto) {
-          this.#operaciones.push({ ...gasto, tipo: "GASTO" });
-          this.#monto -= gasto.cantidad;
+        getNombre() {
+          return this.#nombre;
         }
-
-        agregarGanancia(ganancia) {
-          this.#operaciones.push({ ...ganancia, tipo: "GANANCIA" });
-          this.#monto += ganancia.cantidad;
-        }
-
-        #eliminarTipo(array) {
-          return array.map(({ tipo, ...resto }) => resto);
-        }
-
-        obtenerGastosPorMes(mes) {
-          const gastosMes = this.#operaciones.filter((g) => {
-            const fecha = new Date(g.fecha);
-            const mesFecha = fecha.toLocaleString("es-ES", { month: "long" });
-            return (
-              g.tipo === "GASTO" && mesFecha.toLowerCase() === mes.toLowerCase()
-            );
-          });
-          return this.#eliminarTipo(gastosMes);
-        }
-
-        obtenerGananciasPorMes(mes) {
-          const gananciasMes = this.#operaciones.filter((g) => {
-            const fecha = new Date(g.fecha);
-            const mesFecha = fecha.toLocaleString("es-ES", { month: "long" });
-            return (
-              g.tipo === "GANANCIA" &&
-              mesFecha.toLowerCase() === mes.toLowerCase()
-            );
-          });
-          return this.#eliminarTipo(gananciasMes);
-        }
-
-        obtenerGastosPorCategoria(categoria) {
-          const gastosCategoria = this.#operaciones.filter(
-            (g) =>
-              g.tipo === "GASTO" &&
-              g.categoria.toLowerCase() === categoria.toLowerCase()
-          );
-          return this.#eliminarTipo(gastosCategoria);
-        }
-
-        obtenerGananciasPorCategoria(categoria) {
-          const gananciasCategoria = this.#operaciones.filter(
-            (g) =>
-              g.tipo === "GANANCIA" &&
-              g.categoria.toLowerCase() === categoria.toLowerCase()
-          );
-          return this.#eliminarTipo(gananciasCategoria);
-        }
-
-        calcularTotalPorMes(mes) {
-          const gastosMes = this.obtenerGastosPorMes(mes).reduce(
-            (total, e) => total + e.cantidad,
-            0
-          );
-          const gananciasMes = this.obtenerGananciasPorMes(mes).reduce(
-            (total, e) => total + e.cantidad,
-            0
-          );
-          return gananciasMes - gastosMes;
-        }
-
-        calcularTotalPorCategoria(categoria) {
-          const gastosCategoria = this.obtenerGastosPorCategoria(
-            categoria
-          ).reduce((total, e) => total + e.cantidad, 0);
-          const gananciasCategoria = this.obtenerGananciasPorCategoria(
-            categoria
-          ).reduce((total, e) => total + e.cantidad, 0);
-          return gananciasCategoria - gastosCategoria;
-        }
-
-        obtenerMonto() {
-          return this.#monto;
+        getNacionalidad() {
+          return this.#nacionalidad;
         }
       }
-      const billetera = new BilleteraVirtual(1000);
+      class Libro {
+        #id;
+        #titulo;
+        #autor;
+        #precio;
+        #genero;
+        #stock;
+        constructor(titulo, autor, precio, genero, stock) {
+          if (precio < 0 || stock < 0) {
+            throw new Error("El precio y el stock no pueden ser menores que 0");
+          }
+          this.#id = crypto.randomUUID();
+          this.#titulo = titulo;
+          this.#autor = autor;
+          this.#precio = precio;
+          this.#genero = genero;
+          this.#stock = stock;
+        }
+        tieneStock() {
+          if (this.#stock > 0) {
+            return true;
+          } else {
+            return false;
+          }
+        }
+        getId() {
+          return this.#id;
+        }
+        getTitulo() {
+          return this.#titulo;
+        }
+        getAutor() {
+          return this.#autor;
+        }
+        getPrecio() {
+          return this.#precio;
+        }
+        getGenero() {
+          return this.#genero;
+        }
+        setPrecio(nuevoPrecio) {
+          if (nuevoPrecio >= 0) {
+            this.#precio = nuevoPrecio;
+          } else {
+            console.warn("No puedes introducir un precio negativo");
+          }
+        }
+        setStock(nuevoStock) {
+          if (nuevoStock >= 0) {
+            this.#stock = nuevoStock;
+          } else {
+            console.warn("No puedes introducir un stock negativo");
+          }
+        }
+        reducirStock() {
+          this.#stock -= 1;
+          return true;
+        }
+      }
+      class Libreria {
+        constructor() {
+          this.libros = [];
+          this.ganancias = 0;
+        }
+        agregarLibro(libro) {
+          this.libros.push(libro);
+        }
+        eliminarLibro(id) {
+          const index = this.libros.findIndex((libro) => libro.getId() === id);
+          if (index !== -1) {
+            this.libros.splice(index, 1);
+          }
+        }
+        buscarPorId(id) {
+          return this.libros.find((libro) => libro.getId() === id);
+        }
+        buscarPorTitulo(titulo) {
+          return this.libros.find((libro) => libro.getTitulo() === titulo);
+        }
+        filtrarPorAutor(autor) {
+          return this.libros.filter(
+            (libro) => libro.getAutor().getNombre() === autor
+          );
+        }
+        filtrarPorGenero(genero) {
+          return this.libros.filter((libro) => libro.getGenero() === genero);
+        }
+        comprarLibros(idsLibros) {
+          idsLibros.forEach((element) => {
+            let libro = this.buscarPorId(element);
+            if (libro && libro.tieneStock()) {
+              libro.reducirStock();
+              this.ganancias += libro.getPrecio();
+            } else {
+              console.warn("No hay stock");
+            }
+          });
+        }
+        obtenerGanancias() {
+          return this.ganancias;
+        }
+      }
+      // Crear autores
+      const autor1 = new Autor("Gabriel García Márquez", "Colombiana");
+      const autor2 = new Autor("Isabel Allende", "Chilena");
 
-      billetera.agregarGasto({
-        descripcion: "Comida",
-        cantidad: 200,
-        fecha: "2023-09-03",
-        categoria: "alimentación",
-      });
-      console.log(billetera.obtenerMonto()); // 800
+      // Crear libros
+      const libro1 = new Libro(
+        "Cien Años de Soledad",
+        autor1,
+        20,
+        "Realismo mágico",
+        5
+      );
+      const libro2 = new Libro(
+        "La Casa de los Espíritus",
+        autor2,
+        18,
+        "Novela",
+        3
+      );
 
-      billetera.agregarGanancia({
-        descripcion: "Sueldo",
-        cantidad: 1500,
-        fecha: "2023-09-05",
-        categoria: "trabajo",
-      });
-      console.log(billetera.obtenerMonto()); // 2300
+      // Crear librería y agregar libros
+      const libreria = new Libreria();
+      libreria.agregarLibro(libro1);
+      libreria.agregarLibro(libro2);
 
-      console.log(billetera.calcularTotalPorMes("septiembre")); // 1300
-      console.log(billetera.obtenerGastosPorCategoria("alimentación"));
-      // [{ descripcion: "Comida", cantidad: 200, fecha: "2023-09-03", categoria: "alimentación" }]
+      // Armar array de ids de libros a comprar
+      const idsLibros = [libro1.getId(), libro2.getId(), libro2.getId()];
+
+      // Comprar los libros
+      libreria.comprarLibros(idsLibros);
+
+      console.log("Ganancias:", libreria.obtenerGanancias());
+      // 👉 20 + 18 + 18 = 56
+
+      console.log("Stock libro1:", libro1.tieneStock()); // true (aún quedan 4)
+      console.log("Stock libro2:", libro2.tieneStock()); // true (aún quedan 1)
     </script>
   </body>
 </html>
