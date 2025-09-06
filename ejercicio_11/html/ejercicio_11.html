@@ -22,149 +22,231 @@
   </head>
 
   <body>
-    <h1>Ejercicio Anotador</h1>
+    <h1>Ejercicio Twitter</h1>
     <ul>
       <li><a href="../index.html">Volver</a></li>
     </ul>
     <script>
       /*
-      ## BilleteraVirtual
 
-        - **Propiedades**
-          - monto
-          - operaciones (array de objetos), inicializa vacío
-        - **Constructor**
-          - toma como argumento `montoInicial` y lo asigna a `monto`
-        - **Métodos**
-          - **`agregarGasto(gasto)`** agrega `gasto` a operaciones
-          - **`agregarGanancia(ganancia)`** agrega `ganancia` a operaciones
-          - **`obtenerGastosPorMes(mes)`** devuelve un array con todos los gastos hechos en `mes`
-          - **`obtenerGanaciasPorMes(mes)`** devuelve un array con todas los ganancias obtenidas en `mes`
-          - **`obtenerGastosPorCategoria(categoria)`** devuelve un array con todos los gastos de cierta `categoria`
-          - **`obtenerGanaciasPorCategoria(categoria)`** devuelve un array con todas las ganancias de cierta `categoria`
-          - **`calcularTotalPorMes(mes)`** devuelve el total resultante de restar todos los gastos hechos y sumar todas las ganancias obtenidas en un cierto `mes`
-          - **`calcularTotalPorCategoria(categoria)`** devuelve el total resultante de restar todos los gastos hechos y sumar todas las ganancias obtenidas en cierta `categoria
-          - **`obtenerMonto()**` devuelve `monto`
-        - **Observaciones**
-          - los objetos `gasto` y `ganancia` contiene las propiedades:
-            - `descripcion` (string)
-            - `cantidad` (número)
-            - `fecha` (Date)
-            - `categoria` (string)
-          - cuando se agrega `gasto` o `ganancia` al array operaciones, hay que agregarle a dicha objeto la propiedad `tipo` con el valor `"GASTO"` o `"GANANCIA"` según corresponda, para poder identificarlos en las siguientes operaciones
-          - cuando se devuelve un array con gastos o ganancias, hay que borrar de los objetos que se devuelven la propiedad `tipo`
-          */
-      class BilleteraVirtual {
-        #monto;
-        #operaciones;
+## Twitter con Tweets y Usuarios
 
-        constructor(montoInicial) {
-          this.#monto = montoInicial;
-          this.#operaciones = [];
+  ### Usuario
+  - **Propiedades**
+    - handle (string)
+    - siguiendo (array de `Usuario`), inicializa vacío
+  - **Constructor**
+    - pide `handle` como argumento y lo agrega a su respectiva propiedad
+  - **Métodos**
+    - **`seguir(usuario)`** agrega `usuario` a `siguiendo`, *si no se encuentra ya en dicho array* y *si no es el propio  usuario* (no se puede seguir a sí mismo)
+    - getters para obtener los valores de todas las propiedades
+
+  ### Tweet
+  - **Propiedades**
+    - id (string)
+    - handle (`string`)
+    - texto (string)
+    - likes (array de `Usuario`), inicializa en 0
+    - retweets (array de `Usuario), inicializa en 0
+  - **Constructor**
+    - genera un `id` automático y lo asigna a su propiedad
+    - pide `handle` y `texto` como argumentos y los agrega a sus respectivas propiedades
+  - **Métodos**
+    - getters para obtener los valores de todas las propiedades
+    - **`darLike(usuario)`** agrega `usuario` a `likes`, *si ya se encuentra en dicho array, debe removerlo de mismo*
+    - **`retweetear(usuario)`** agrega `usuario` a `retweets`, *si ya se encuentra en dicho array, debe removerlo de mismo*
+
+  ### Twitter
+  - **Propiedades**
+    - tweets (array de `Tweet`), inicializa vacío
+  - **Métodos**
+    - **`twittear(tweet)`** agrega `tweet` a `tweets`, *si dicho `tweet` no se encuentra actualmente en el array*
+    - **`obtenerTimeline(usuario)`** devuelve un array de tweets del `usuario`. Este array se compone de
+      - todos los tweets publicados por los usuarios que sigue
+      - todos los tweets likeados por los usuarios que sigue
+      - todos los tweets retweeteados por los usuarios que sigue
+      - no debe haber tweets repetidos
+      - deben estar ordenados de más nuevos a más viejos
+  - **Observaciones**
+    - Es recomendable crear métodos privados para simplificar `obtenerTimeline`          */
+      class Usuario {
+        #handle;
+        #siguiendo;
+        constructor(handle) {
+          this.#handle = handle;
+          this.#siguiendo = [];
         }
-
-        agregarGasto(gasto) {
-          this.#operaciones.push({ ...gasto, tipo: "GASTO" });
-          this.#monto -= gasto.cantidad;
+        getHandle() {
+          return this.#handle;
         }
-
-        agregarGanancia(ganancia) {
-          this.#operaciones.push({ ...ganancia, tipo: "GANANCIA" });
-          this.#monto += ganancia.cantidad;
+        getSiguiendo() {
+          return this.#siguiendo.map((user) => user.getHandle());
         }
+        seguir(usuario) {
+          if (!(usuario instanceof Usuario)) {
+            throw new Error("Solo puedes seguir a objetos de tipo Usuario");
+          }
 
-        #eliminarTipo(array) {
-          return array.map(({ tipo, ...resto }) => resto);
-        }
+          const yaSigue = this.#siguiendo.some(
+            (user) => user.getHandle() === usuario.getHandle()
+          );
 
-        obtenerGastosPorMes(mes) {
-          const gastosMes = this.#operaciones.filter((g) => {
-            const fecha = new Date(g.fecha);
-            const mesFecha = fecha.toLocaleString("es-ES", { month: "long" });
-            return (
-              g.tipo === "GASTO" && mesFecha.toLowerCase() === mes.toLowerCase()
+          if (yaSigue || this.getHandle() === usuario.getHandle()) {
+            console.warn(
+              `${this.getHandle()} no puede seguir a ${usuario.getHandle()}`
             );
-          });
-          return this.#eliminarTipo(gastosMes);
-        }
+            return;
+          }
 
-        obtenerGananciasPorMes(mes) {
-          const gananciasMes = this.#operaciones.filter((g) => {
-            const fecha = new Date(g.fecha);
-            const mesFecha = fecha.toLocaleString("es-ES", { month: "long" });
-            return (
-              g.tipo === "GANANCIA" &&
-              mesFecha.toLowerCase() === mes.toLowerCase()
-            );
-          });
-          return this.#eliminarTipo(gananciasMes);
-        }
-
-        obtenerGastosPorCategoria(categoria) {
-          const gastosCategoria = this.#operaciones.filter(
-            (g) =>
-              g.tipo === "GASTO" &&
-              g.categoria.toLowerCase() === categoria.toLowerCase()
-          );
-          return this.#eliminarTipo(gastosCategoria);
-        }
-
-        obtenerGananciasPorCategoria(categoria) {
-          const gananciasCategoria = this.#operaciones.filter(
-            (g) =>
-              g.tipo === "GANANCIA" &&
-              g.categoria.toLowerCase() === categoria.toLowerCase()
-          );
-          return this.#eliminarTipo(gananciasCategoria);
-        }
-
-        calcularTotalPorMes(mes) {
-          const gastosMes = this.obtenerGastosPorMes(mes).reduce(
-            (total, e) => total + e.cantidad,
-            0
-          );
-          const gananciasMes = this.obtenerGananciasPorMes(mes).reduce(
-            (total, e) => total + e.cantidad,
-            0
-          );
-          return gananciasMes - gastosMes;
-        }
-
-        calcularTotalPorCategoria(categoria) {
-          const gastosCategoria = this.obtenerGastosPorCategoria(
-            categoria
-          ).reduce((total, e) => total + e.cantidad, 0);
-          const gananciasCategoria = this.obtenerGananciasPorCategoria(
-            categoria
-          ).reduce((total, e) => total + e.cantidad, 0);
-          return gananciasCategoria - gastosCategoria;
-        }
-
-        obtenerMonto() {
-          return this.#monto;
+          this.#siguiendo.push(usuario);
         }
       }
-      const billetera = new BilleteraVirtual(1000);
+      class Tweet {
+        #id;
+        #autor;
+        #texto;
+        #likes;
+        #retweets;
+        #fecha;
 
-      billetera.agregarGasto({
-        descripcion: "Comida",
-        cantidad: 200,
-        fecha: "2023-09-03",
-        categoria: "alimentación",
-      });
-      console.log(billetera.obtenerMonto()); // 800
+        constructor(usuario, texto) {
+          if (!(usuario instanceof Usuario)) {
+            throw new Error("El autor debe ser un objeto de tipo Usuario");
+          }
+          this.#id = crypto.randomUUID();
+          this.#autor = usuario;
+          this.#texto = texto;
+          this.#likes = [];
+          this.#retweets = [];
+          this.#fecha = new Date();
+        }
 
-      billetera.agregarGanancia({
-        descripcion: "Sueldo",
-        cantidad: 1500,
-        fecha: "2023-09-05",
-        categoria: "trabajo",
-      });
-      console.log(billetera.obtenerMonto()); // 2300
+        getId() {
+          return this.#id;
+        }
 
-      console.log(billetera.calcularTotalPorMes("septiembre")); // 1300
-      console.log(billetera.obtenerGastosPorCategoria("alimentación"));
-      // [{ descripcion: "Comida", cantidad: 200, fecha: "2023-09-03", categoria: "alimentación" }]
+        getAutor() {
+          return this.#autor.getHandle();
+        }
+
+        getTexto() {
+          return this.#texto;
+        }
+
+        getLikes() {
+          return this.#likes.map((user) => user.getHandle());
+        }
+
+        getRetweets() {
+          return this.#retweets.map((user) => user.getHandle());
+        }
+        getFecha() {
+          return this.#fecha;
+        }
+
+        toggleLike(usuario) {
+          if (!(usuario instanceof Usuario)) {
+            throw new Error("Solo un Usuario puede dar like");
+          }
+          const index = this.#likes.findIndex(
+            (user) => usuario.getHandle() === user.getHandle()
+          );
+          if (index !== -1) {
+            this.#likes.splice(index, 1); // quitar like
+          } else {
+            this.#likes.push(usuario); // dar like
+          }
+        }
+
+        toggleRetweet(usuario) {
+          if (!(usuario instanceof Usuario)) {
+            throw new Error("Solo un Usuario puede retweetear");
+          }
+          const index = this.#retweets.findIndex(
+            (user) => usuario.getHandle() === user.getHandle()
+          );
+          if (index !== -1) {
+            this.#retweets.splice(index, 1); // quitar retweet
+          } else {
+            this.#retweets.push(usuario); // hacer retweet
+          }
+        }
+      }
+      class Twitter {
+        #tweets;
+        constructor() {
+          this.#tweets = [];
+        }
+        obtenerTweetsPublicadosPor(usuario) {
+          return this.#tweets.filter(
+            (tweet) => tweet.getAutor() === usuario.getHandle()
+          );
+        }
+        obtenerTweetsLikeadosPor(usuario) {
+          return this.#tweets.filter((tweet) => {
+            return tweet.getLikes().includes(usuario.getHandle());
+          });
+        }
+        obtenerTweetsRetweeteadosPor(usuario) {
+          return this.#tweets.filter((retweet) => {
+            return retweet.getRetweets().includes(usuario.getHandle());
+          });
+        }
+        removerDuplicados(lista) {
+          return [...new Set(lista)];
+        }
+
+        twittear(tweet) {
+          if (!(tweet instanceof Tweet)) {
+            throw new Error("Solo un Tweet puede ser registrado");
+          }
+          this.#tweets.push(tweet);
+        }
+        obtenerTimeLine(usuario) {
+          const listaCompleta = [
+            ...this.obtenerTweetsPublicadosPor(usuario),
+            ...this.obtenerTweetsLikeadosPor(usuario),
+            ...this.obtenerTweetsRetweeteadosPor(usuario),
+          ];
+          const listaSinDuplicados = this.removerDuplicados(listaCompleta);
+          return listaSinDuplicados.sort(
+            (a, b) => new Date(b.getFecha()) - new Date(a.getFecha())
+          );
+        }
+      }
+
+      // Crear usuarios
+      const alice = new Usuario("alice");
+      const bob = new Usuario("bob");
+      const carol = new Usuario("carol");
+
+      // Relaciones de seguimiento
+      alice.seguir(bob);
+      alice.seguir(carol);
+
+      // Instanciar Twitter
+      const twitter = new Twitter();
+
+      // Bob y Carol publican tweets
+      const t1 = new Tweet(bob, "Hola, soy Bob!");
+      const t2 = new Tweet(carol, "Buenos días desde Carol ☀️");
+      const t3 = new Tweet(carol, "Otro tweet de Carol");
+
+      twitter.twittear(t1);
+      twitter.twittear(t2);
+      twitter.twittear(t3);
+
+      // Bob da like al tweet de Carol
+      t2.toggleLike(bob);
+
+      // Carol retweetea el tweet de Bob
+      t1.toggleRetweet(carol);
+
+      // PROBAR MÉTODOS
+
+      // Timeline de Alice (sigue a Bob y Carol)
+      console.log("Timeline de Alice:");
+      twitter.obtenerTimeLine(alice);
     </script>
   </body>
 </html>
