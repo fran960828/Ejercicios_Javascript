@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title></title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <meta name="description" content="" />
+
+    <meta property="og:title" content="" />
+    <meta property="og:type" content="" />
+    <meta property="og:url" content="" />
+    <meta property="og:image" content="" />
+    <meta property="og:image:alt" content="" />
+
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="../icon.png" />
+
+    <link rel="manifest" href="../site.webmanifest" />
+    <meta name="theme-color" content="#fafafa" />
+  </head>
+
+  <body>
+    <h1 class="title">EJERCICIOS DE SELECTORES DEL DOM</h1>
+    <nav class="menu">
+      <ul>
+        <li><a href="../index.html" id="first_link">Volver</a></li>
+      </ul>
+    </nav>
+    <script>
+      // Seleccionar elemento por ID (Devuelve un HTML ELEMENT)
+      const object = document.getElementById("first_link");
+      // Seleccionar elemento por clase(Devuelve un HTML COLLECTION)
+      const object1 = document.getElementsByClassName("title");
+      // Seleccionar elemento por Etiqueta(Devuelve un HTML COLLECTION)
+      const object2 = document.getElementsByTagName("a");
+      // Seleccionar el primer elemento que se ajuste al selector
+      const object3 = document.querySelector("a");
+      // Seleccionar todos los elementos que se ajusten al selector(Como si fuera css)(Devuelve una Node list)
+      const object4 = document.querySelectorAll(".menu");
+    </script>
+  </body>
+</html>

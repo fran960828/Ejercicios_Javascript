@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title></title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <meta name="description" content="" />
+
+    <meta property="og:title" content="" />
+    <meta property="og:type" content="" />
+    <meta property="og:url" content="" />
+    <meta property="og:image" content="" />
+    <meta property="og:image:alt" content="" />
+
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="icon.png" />
+
+    <link rel="manifest" href="../site.webmanifest" />
+    <meta name="theme-color" content="#fafafa" />
+  </head>
+
+  <body>
+    <h1>Ejercicio Manipulación y Navegacion por el DOM</h1>
+    <ul>
+      <li><a href="../index.html">Volver</a></li>
+    </ul>
+    <section class="hero">
+      <h2 class="hero__title">Esto es una prueba de manipulación del DOM</h2>
+      <p class="hero__description" style="color: red">
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi
+        reprehenderit architecto mollitia, deleniti voluptates repellat aliquid
+        placeat officia? Iusto aut atque cumque similique consectetur quam
+        dolor! Aut fugit praesentium velit!
+      </p>
+    </section>
+    <script>
+      // MANIPULACION Y NAVEGACIÓN POR EL DOM
+      // # Comparativa textcontent,innertext, innerHTML,outerHTML
+      let prueba = document.querySelector(".hero");
+      // console.log(prueba.textContent); //muestra solo el texto sin tener en cuenta los estilos
+      // console.log(prueba.innerText); //Muestra el texto pero tiene en cuenta los estilos
+      // console.log(prueba.innerHTML); //Muestra el contenido del html incluyendo etiquetas contenidas dentro del objeto, en este caso, prueba
+      // console.log(prueba.outerHTML); // Igual que innerHTML pero también muestra la etiqueta que engloba el contenido
+
+      // # API DE NODOS
+      let newP = document.createElement("p");
+      newP.textContent = "Este es un p insertado";
+      let actualP = document.querySelector(".hero__description");
+      let actualH2 = document.querySelector(".hero__title");
+
+      // prueba.appendChild(newP);--> añade un nuevo p como ultimo hijo del elemento prueba
+      // prueba.removeChild(newP);--> Elimina el elemento que designemos dentro del parentesis si esta dentro del elemento prueba
+      // prueba.replaceChild(newP, actualP); --> Sustituye un elemento ya existente (actualP) por otro nuevo(new P)
+      // prueba.insertBefore(newP, actualP); --> Inserta un elemento newP antes de actualP dentro de prueba
+
+      // # API DE ELEMENTOS (MAS POTENTE QUE EL ANTERIOR)
+
+      // actualP.before(newP); --> Inserta el nuevo elemento que va entre parentesis antes del actual (ActualP)
+      // actualH2.after(newP); --> Inserta el nuevo elemento que va entre parentesis despues del actual (ActualH2)
+      // prueba.prepend(newP); --> Inserta el nuevo elemento que va entre parentesis como primer hijo (debe contener otros hijos en su interior)
+      // prueba.append(newP); --> Inserta el nuevo elemento que va entre parentesis como ultimo hijo (debe contener otros hijos en su interior)
+      // prueba.replaceChildren(newP); --> Reemplaza todos los hijos existentes por el actual que va entre parentesis (debe contener otros hijos en su interior)
+      // actualH2.replaceWith(newP); --> Reemplaza un elemento por otro que va entre parentesis
+      // actualP.remove(); --> Elimina el elemento designado
+
+      // # API DE ELEMENTOS ADYACENTES
+
+      // Las posiciones son beforebegin(equivalente a before),afterbegin(equivalente a prepend),beforeend(equivalente a append) y afterend(equivalente a after).
+
+      // prueba.insertAdjacentElement("beforebegin", newP); --> Se emplea para insertar un elemento de forma similar al api de elementos
+      // prueba.insertAdjacentHTML("afterend", "<h5>Como lo llevas</h5>"); --> Se emplea para insertar codigo html directamente
+      // prueba.insertAdjacentText("beforeend", "No lo llevo mal"); --> se emplea para insertar solo texto
+
+      // # NAVEGAR POR ELEMENTOS
+
+      // prueba.children; --> muestra todos los hijos del elemento si los tiene
+      // ActualH2.parentElement --> muestra el elemento padre si lo tiene
+      // prueba.firstElementChild --> muestra el primer elemnto hijo
+      // prueba.lastElementChild --> muestra el último elemento hijo
+      // ActualP.previousElementSibling --> muestra el elemento hermano anterior
+      // ActualH2.nextElementSibling --> muestra el elemento hermano posterior
+
+      // # NAVEGAR POR NODOS --> además de elementos, incluye textos que son debidos a saltos de linea y comentarios.
+
+      // prueba.childNodos; --> muestra todos los hijos si los tiene
+      // ActualH2.parentNode --> muestra el elemento padre si lo tiene
+      // prueba.firstChild --> muestra el primer nodo hijo
+      // prueba.lastChild --> muestra el último nodo hijo
+      // ActualP.previousSibling --> muestra el nodo hermano anterior
+      // ActualH2.nextSibling --> muestra el nodo hermano posterior
+    </script>
+  </body>
+</html>

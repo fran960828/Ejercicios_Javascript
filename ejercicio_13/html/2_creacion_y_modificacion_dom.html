@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title></title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <meta name="description" content="" />
+
+    <meta property="og:title" content="" />
+    <meta property="og:type" content="" />
+    <meta property="og:url" content="" />
+    <meta property="og:image" content="" />
+    <meta property="og:image:alt" content="" />
+
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="icon.png" />
+
+    <link rel="manifest" href="../site.webmanifest" />
+    <meta name="theme-color" content="#fafafa" />
+  </head>
+
+  <body>
+    <h1>Ejercicio Creación y modificación de elementos del dom</h1>
+    <ul>
+      <li><a href="../index.html">Volver</a></li>
+    </ul>
+    <div class="hero">
+      <h2 class="hero__title">Ejercicio del DOM de JAVASCRIPT</h2>
+      <p class="hero__description">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo ipsum
+        tempore assumenda totam. Rem sit, quaerat esse qui ipsum, veritatis in
+        architecto numquam omnis id fuga aspernatur a maiores dolore?
+      </p>
+      <p class="textLabel">Esto es un <strong>mensaje</strong></p>
+      <a href="html/ejercicio_1.html" class="hero__link">Primer Ejercicio</a>
+    </div>
+
+    <script>
+      let object3 = document.querySelector(".hero__description");
+      // Usar Create Element para crear una etiqueta vacia
+      const divElement = document.createElement("div");
+      // Usar Create Comment para crear un comentario
+      const firstComment = document.createComment(
+        "Esto es una prueba de comentario"
+      );
+      // Usar create Node textNode para crear un contenido que luego se le puede aplicar a una etiqueta vacia
+      const firstContent = document.createTextNode(
+        "Soy el contenido que se le asigna a una etiqueta"
+      );
+      // Usar clone node para clonar una etiqueta presente en el HTML
+      const divHero = document.querySelector("div.hero");
+      const clonVacio = divHero.cloneNode(false); //Copia solo el elemento vacio, no lo que está dentro de él
+      const clonCompleto = divHero.cloneNode(true); // Copia el elemento junto con lo que esta dentro de él
+      // Usar IsConnected para ver si nuestro elemento se muestra en el html(false--> No se muestra : true-->Se muestra)
+      console.log(divHero.isConnected);
+      console.log(clonCompleto.isConnected);
+      // Usar text content renderiza el texto sin  incluir la etiquetas y si lo modificas usando etiquetas aparecen en html como
+      // string mientras que INNER HTML si que renderiza las etiquetas y si lo modificas el objeto e incluyes etiquetas las  renderiza en html
+      const texto = document.querySelector(".textLabel");
+      console.log(texto.textContent);
+      console.log(texto.innerHTML);
+      texto.textContent = "<em>Nuevo texto</em> sin etiquetas";
+      object3.innerHTML = "<em>Nuevo texto</em> sin etiquetas";
+    </script>
+  </body>
+</html>

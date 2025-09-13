@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title></title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <meta name="description" content="" />
+
+    <meta property="og:title" content="" />
+    <meta property="og:type" content="" />
+    <meta property="og:url" content="" />
+    <meta property="og:image" content="" />
+    <meta property="og:image:alt" content="" />
+
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="icon.png" />
+
+    <link rel="manifest" href="../site.webmanifest" />
+    <meta name="theme-color" content="#fafafa" />
+  </head>
+
+  <body>
+    <h1>Atributos del dom</h1>
+    <ul>
+      <li><a href="../index.html">Volver</a></li>
+    </ul>
+    <div class="hero">
+      <h2 class="hero__title">Ejercicio del DOM de JAVASCRIPT</h2>
+      <p class="hero__description">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo ipsum
+        tempore assumenda totam. Rem sit, quaerat esse qui ipsum, veritatis in
+        architecto numquam omnis id fuga aspernatur a maiores dolore?
+      </p>
+      <p class="textLabel">Esto es un <strong>mensaje</strong></p>
+      <a href="html/1_selectores.html" class="hero__link">Selectores</a>
+    </div>
+    <input type="text" id="name" />
+    <script>
+      let divHero = document.querySelector(".hero");
+      // Manipular los atributos básico  como class, id, style usando las propiedades de objeto
+      divHero.id = "modificacion";
+      divHero.style = "color:red";
+
+      // Usamos hasAttributes para comprobar si el elemento tiene atributos HTML y hasAttribute('id')entre parentesis ponemos el nombre del atributo
+      // entre comillas en caso de querer comprobar un atributo especifico
+      divHero.hasAttributes();
+      divHero.hasAttribute("style");
+
+      // Usamos getAttributeNames() para obtener los atributos de un elemento
+      divHero.getAttributeNames();
+
+      // Usamos getAttribute('id') para obtener el valor de un atributo en especifico
+      divHero.getAttribute("class");
+      // Usamos setAttribute('nombre del atributo','valor del atributo') para modificar el valor de un atributo, no se recomienda usar en booleanos
+      divHero.setAttribute("style", "color:blue");
+      // se usa removeAttribute('nombre del atributo') para eliminar un agributo
+      divHero.removeAttribute("style");
+      // Para modificar atributos booleanos como requiered se usa toggleAttribute  o con propiedades de objeto
+      let input = document.getElementById("name");
+      input.toggleAttribute("required"); //toggle habilita requiered si no lo está o lo deshabilita si ya esta habilitado
+      input.required = false; // False deshabilita el required pero no lo quita del html y  True lo habilita, para quitarlo solo se puede hacer con removeAttribute
+    </script>
+  </body>
+</html>

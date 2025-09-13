@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title></title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <meta name="description" content="" />
+
+    <meta property="og:title" content="" />
+    <meta property="og:type" content="" />
+    <meta property="og:url" content="" />
+    <meta property="og:image" content="" />
+    <meta property="og:image:alt" content="" />
+
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="icon.png" />
+
+    <link rel="manifest" href="../site.webmanifest" />
+    <meta name="theme-color" content="#fafafa" />
+  </head>
+
+  <body>
+    <h1>Classlist y Datasets</h1>
+    <ul>
+      <li><a href="../index.html">Volver</a></li>
+    </ul>
+    <section class="lista__clases">
+      <article class="lista__clase articulo individual">
+        <h3>Auriculares inalambricos</h3>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt culpa
+          necessitatibus dolor non, blanditiis eveniet consectetur amet
+          voluptatibus tenetur eius provident distinctio, quaerat sed. Harum
+          laudantium vitae error accusamus voluptatibus.
+        </p>
+      </article>
+      <article class="dataset" data-id="1" data-price="22">
+        <h3>Tablet</h3>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque ipsam
+          fuga quis labore incidunt maxime sequi possimus sit saepe. Excepturi
+          minus fuga error officia molestias nisi dignissimos quisquam
+          consequuntur maxime!
+        </p>
+      </article>
+    </section>
+    <script>
+      // CLASSLIST Y DATASETS
+
+      // Classlist: se trata de una propiedad que nos permite interaccionar con las clases empleando los siguientes métodos
+      // Seleccionamos el articulo en cuestión
+      primerArticulo = document.querySelector(".lista__clase");
+      // Visualizamos las clases
+      console.log(primerArticulo.classList);
+      // Nos permite obtener el número de clases del objeto
+      console.log(primerArticulo.classList.length);
+      // Nos permite obtener la clase que este en una posición determinada de la lista
+      console.log(primerArticulo.classList.item(2));
+      // Devuelve True si el objeto contiene la clase y False si no la tiene
+      console.log(primerArticulo.classList.contains("lista__clase"));
+      // Nos permite añadir una nueva clase a la lista sin alterar las ya existentes
+      console.log(primerArticulo.classList.add("relevante"));
+      // Nos permite eliminar una clase de la lista
+      console.log(primerArticulo.classList.remove("relevante"));
+      // el toggle Crea una nueva clase si esta no existe o la elimina si existe
+      console.log(primerArticulo.classList.toggle("rojo"));
+      // Replace sustituye una clase que ponemos en primer lugar por otra nueva que ponemos en segundo lugar
+      console.log(primerArticulo.classList.replace("rojo", "verde"));
+
+      // DATASETS -> Si ponemos dos nombres despues de data debe ser en formato camelCase y solo se usan para datos que no queremos mostrar al usuario
+      primerDataset = document.querySelector(".dataset");
+      // Mostrar el dataset
+      console.log(primerDataset.dataset);
+      // Obtener el valor de un dato cualquiera -> Es lo mismo que hariamos con get attribute
+      console.log(primerDataset.dataset.price);
+      // Setear el valor de un dato cualquiera -> Es lo mismo que hariamos con set attribute
+      primerDataset.dataset.id = 5;
+      // Añadir un nuevo dato
+      primerDataset.dataset.stock = 120;
+      // Eliminar un dato
+      primerDataset.removeAttribute("data-stock");
+    </script>
+  </body>
+</html>
