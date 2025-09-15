@@ -41,7 +41,6 @@ for (element of pHero) {
 
 // EJERCICIO 9
 const lastBody = document.querySelector("body > p:last-of-type");
-console.log(lastBody);
 
 // Ejercicio 10
 const primerAdyacente = primerP.nextElementSibling;
@@ -51,8 +50,46 @@ lastBody.remove();
 
 // EJERCICIO 12
 const imagenes = document.querySelectorAll("img");
-for (imagen of imagenes) {
+for (let imagen of imagenes) {
   if (imagen.getAttribute("src") === "cambiame") {
     imagen.setAttribute("src", "cambiado");
   }
 }
+
+// EJERCICIO 13
+primerP.classList.add("clasejemplo");
+
+// EJERCICIO 14
+let liCreado = document.createElement("li");
+liCreado.textContent = "tercer elemento";
+
+let listaUl = document.querySelectorAll("ul");
+
+for (let elemento of listaUl) {
+  if (elemento.children.length === 2) {
+    // Clonamos el li para poder añadirlo a más de un <ul>
+    let nuevoLi = liCreado.cloneNode(true);
+    elemento.append(nuevoLi);
+  }
+}
+// EJERCICIO 15
+const padrePrimerP = primerP.parentElement;
+
+// EJERCICIO 16
+const hermanoAnteriorP = primerP.previousElementSibling;
+
+// EJERCICIO 17
+divContainer = document.querySelector(".container");
+divContainer.setAttribute("style", "background-color:red");
+
+// EJERCICIO 18 y 23
+pText = document.querySelector("#text");
+pText.innerText = "https://www.google.com";
+pText.classList.toggle("portatil");
+
+// EJERCICIO 19
+divEustakio = document.querySelectorAll(".eustakio");
+
+// EJERCICIO 24
+const primerLi = document.querySelector("li");
+const padrePrimerLi = primerLi.parentElement;
