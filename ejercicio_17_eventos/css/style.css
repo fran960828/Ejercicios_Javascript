@@ -1,0 +1,26 @@
+/*EJERCICIO 1*/
+div.imagenes{
+  width: 50%;
+  height: auto;
+  display: flex;
+  margin: auto auto;
+  border:1px solid black;
+}
+div.imagenes  .imagenes__item{
+display: none;
+width: 200px;
+height: fit-content;
+margin: auto;
+}
+/*EJERCICIO 2*/
+body{
+  position: relative;
+}
+div.caja{
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  position: fixed;
+  top:300px;
+  left:650px;
+}
