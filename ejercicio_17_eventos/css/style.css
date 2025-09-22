@@ -1,26 +1,42 @@
 /*EJERCICIO 1*/
-div.imagenes{
+div.imagenes {
   width: 50%;
   height: auto;
   display: flex;
   margin: auto auto;
-  border:1px solid black;
+  border: 1px solid black;
 }
-div.imagenes  .imagenes__item{
-display: none;
-width: 200px;
-height: fit-content;
-margin: auto;
+div.imagenes .imagenes__item {
+  display: none;
+  width: 200px;
+  height: fit-content;
+  margin: auto;
 }
 /*EJERCICIO 2*/
-body{
+body {
   position: relative;
 }
-div.caja{
+div.caja {
   width: 100px;
   height: 100px;
   background-color: red;
   position: fixed;
-  top:300px;
-  left:650px;
+  top: 300px;
+  left: 650px;
+}
+/* Ejercicio 3 */
+button.eliminar {
+  text-transform: lowercase;
+  border-radius: 50%;
+  border: 1px hidden black;
+}
+button.eliminar:hover {
+  transform: scale(1.25);
+}
+/* Ejercicio 5 */
+div.aleatorio {
+  background-color: blue;
+  width: 100px;
+  height: 100px;
+  position: absolute;
 }
