@@ -1,0 +1,75 @@
+/*EJERCICIO 1
+div.imagenes {
+  width: 50%;
+  height: auto;
+  display: flex;
+  margin: auto auto;
+  border: 1px solid black;
+}
+div.imagenes .imagenes__item {
+  display: none;
+  width: 200px;
+  height: fit-content;
+  margin: auto;
+}
+EJERCICIO 2
+body {
+  position: relative;
+}
+div.caja {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  position: fixed;
+  top: 300px;
+  left: 650px;
+}
+ Ejercicio 3 
+button.eliminar {
+  text-transform: lowercase;
+  border-radius: 50%;
+  border: 1px hidden black;
+}
+button.eliminar:hover {
+  transform: scale(1.25);
+}
+ Ejercicio 5 
+div.aleatorio {
+  background-color: blue;
+  width: 100px;
+  height: 100px;
+  position: absolute;
+}
+ Ejercicio 7
+div.redbox{
+  width: 10px;
+  height: 40px;
+  background-color: red;
+}
+div.greenbox{
+  width: 10px;
+  height: 40px;
+  background-color: green;
+  margin-bottom: 20px;
+}*/
+/* Ejercicio 8 */
+    #container {
+      display: grid;
+      grid-template-columns: repeat(6, 80px);
+      gap: 10px;
+      width: max-content;
+      margin: 20px;
+    }
+    .caja {
+      width: 80px;
+      height: 80px;
+      background: black;         /* estado inicial: negra */
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.25s;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    .caja.bloqueada {
+      cursor: default;
+      outline: 2px solid #fff3;
+    }
