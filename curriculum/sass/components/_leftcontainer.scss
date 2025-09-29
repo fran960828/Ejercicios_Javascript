@@ -9,6 +9,11 @@
   flex-direction: column;
   gap: 40px;
 }
+.perfil {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .imagen {
   width: 250px;
   height: 250px;
@@ -33,7 +38,8 @@
     font-family: Arial, Helvetica, sans-serif;
     font-size: 18px;
     font-weight: 400;
-    line-height: 1.5;
+    line-height: 2;
+    text-transform: uppercase;
   }
 }
 .skills {
@@ -56,7 +62,7 @@
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 40px;
   }
   &__item {
     color: rgb(203, 199, 199);
