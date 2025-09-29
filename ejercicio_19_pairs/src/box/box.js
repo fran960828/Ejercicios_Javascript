@@ -27,6 +27,27 @@ class Box {
   get match() {
     return this.#match;
   }
+  set element(element){
+    this.#element=element
+  }
+  set match(match){
+    this.#match=match
+  }
+  eventChangeColor(){
+    if (this.#element){
+      this.#element.addEventListener('click',(e)=>{
+        if (!this.#open){
+          this.#element.style.backgroundColor=this.#color
+          this.#open=true
+        }
+        return false
+      })
+    } 
+  }
+  resetcolor(){
+    this.#element.style.backgroundColor='black'
+    this.#open=false
+  }
 }
 
 export default Box;
