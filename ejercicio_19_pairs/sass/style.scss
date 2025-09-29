@@ -1,0 +1,19 @@
+@use "./vendors/vendors" as *;
+@use "./abstracts/abstracts" as *;
+@use "./base/base" as *;
+@use "./components/components" as *;
+@use "./layout/layout" as *;
+@use "./pages/pages" as *;
+@use "./themes/themes" as *;
+@use "settings" as *;
+
+.box {
+  width: 100%;
+  height: 50px;
+  background-color: black;
+}
+#tablero {
+  display: grid;
+  gap: 10px;
+  padding: 20px;
+}
