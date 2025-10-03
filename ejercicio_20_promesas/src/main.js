@@ -1,14 +1,11 @@
 import "../sass/style.scss";
 
-const p1= new Promise((resolve, reject) => {
-    reject (20);
-})
-const p2= new Promise((resolve,reject)=>{
-    resolve(5)
-})
-
-
-
+// const p1= new Promise((resolve, reject) => {
+//     reject (20);
+// })
+// const p2= new Promise((resolve,reject)=>{
+//     resolve(5)
+// })
 
 //p1.then((valor)=>{
 //    console.log('el valor de promesa 1 es ',valor)
@@ -35,9 +32,40 @@ const p2= new Promise((resolve,reject)=>{
 //    console.log('Proceso finalizado')
 //})
 
-Promise.allSettled([p1,p2]).then((valores)=>{
-    console.log(valores)
-    
-}).catch((error)=>{
-    console.log(error)
-})
+// Promise.allSettled([p1,p2]).then((valores)=>{
+//     console.log(valores)
+
+// }).catch((error)=>{
+//     console.log(error)
+// })
+let urltodos = "https://jsonplaceholder.typicode.com/todos";
+
+const getData = async (url) => {
+  const response = await fetch(url)
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      }
+      return Promise.reject("Error en la llamada a la API");
+    })
+    .then((data) => {
+      return data.filter((item) => item.completed && item.userId === 1);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  console.log(response);
+};
+getData(urltodos);
+
+const user = fetch("https://jsonplaceholder.typicode.com/todos").then(
+  (response) => response.json()
+);
+const completados = fetch("https://jsonplaceholder.typicode.com/todos").then(
+  (response) => response.json()
+);
+Promise.all([user, completados]).then((valor) => {
+  valor[0]
+    .filter((item) => item.userId === 1 && item.completed)
+    .forEach((item) => console.log(item));
+});
