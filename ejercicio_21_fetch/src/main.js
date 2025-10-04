@@ -8,6 +8,7 @@ let button = document.getElementById("submit");
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
+  button.disabled = true;
   fetch("https://jsonplaceholder.typicode.com/todos", {
     method: "POST",
     headers: {
@@ -22,6 +23,8 @@ form.addEventListener("submit", (event) => {
     .then((response) => response.json())
     .then((json) => {
       console.log(json);
+      button.disabled = false;
+      form.reset();
     })
     .catch((error) => console.error("Error:", error));
 });
